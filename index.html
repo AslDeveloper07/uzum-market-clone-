@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uzum.uz</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css"
+        integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header_in container">
+            <div class="dostavka">
+                <div class="location">
+                    <i class="ri-map-pin-line"></i>
+                    <p>
+                        Toshkent
+                    </p>
+                    <i class="ri-arrow-down-s-line"></i>
+                </div>
+                <div class="punkt">
+                    <p>
+                        Topshirish punktlari
+                    </p>
+                </div>
+            </div>
+            <div class="top_links">
+                <ul>
+                    <li class="sale">
+                        <p>Sotuvchi bo'lim</p>
+                    </li>
+                    <li class="dastovka_punkt">
+                        <p>Topshirish punkitini ochish</p>
+                    </li>
+                    <li>
+                        <p>Savol-javob</p>
+                    </li>
+                    <li>
+                        <p>Buyurtmalarim</p>
+                    </li>
+                    <div class="lang">
+                        <img src="./resource/img/uzb.png" alt="uzbke flag image">
+                        <p>O'zbekcha</p>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- KATALOG -->
+    <div class="katalog container">
+        <div class="katalog_card ">
+            <img src="./resource/img/star-pages.png" alt="star image">
+            <p>
+                Hafta tovarlari
+            </p>
+        </div>
+        <div class="katalog_card">
+            <p>
+                Elektronika
+            </p>
+        </div>
+        <div class="katalog_card">
+            <p>
+                Maishiy texnika
+            </p>
+        </div>
+        <div class="katalog_card">
+            <p>
+                Kiyim
+            </p>
+        </div>
+        <div class="katalog_card">
+            <p>
+                Poyabzallar
+            </p>
+        </div>
+        <div class="katalog_card">
+            <p>
+                Aksessuarlar
+            </p>
+        </div>
+        <div class="katalog_card">
+            <p>
+                Go'zallik va parvarish
+            </p>
+        </div>
+        <div class="katalog_card">
+            <p>
+                Salomatlik
+            </p>
+        </div>
+        <div class="katalog_card">
+            <p>
+                Uy-ro'zg'or bo'limlari
+            </p>
+        </div>
+        <div class="katalog_card">
+            <p>
+                Qurilish va ta'mirlash
+            </p>
+        </div>
+        <div class="katalog_card">
+            <h4>
+                Yana
+                <i class="ri-arrow-down-s-line"></i>
+
+            </h4>
+
+        </div>
+    </div>
+    <!-- SWIPPER SLIDER -->
+
+    <swiper-container class="mySwiper container" pagination="true" pagination-clickable="true" space-between="30"
+    centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
+    <swiper-slide>
+        <img src="./resource/img/slider1.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+        <img src="./resource/img/slider2.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+        <img src="./resource/img/slider3.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+        <img src="resource/img/slider4.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+        <img src="resource/img/slider5.jpg" alt="">
+    </swiper-slide>
+    <div class="autoplay-progress" slot="container-end">
+      <svg viewBox="0 0 48 48">
+        <circle cx="24" cy="24" r="20"></circle>
+      </svg>
+      <span></span>
+    </div>
+  </swiper-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script>
+        const progressCircle = document.querySelector(".autoplay-progress svg");
+        const progressContent = document.querySelector(".autoplay-progress span");
+
+        const swiperEl = document.querySelector("swiper-container");
+        swiperEl.addEventListener("autoplaytimeleft", (e) => {
+          const [swiper, time, progress] = e.detail;
+          progressCircle.style.setProperty("--progress", 1 - progress);
+          progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+        });
+      </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+.katalog {
+  display: flex;
+  justify-content: space-between;
+  &_card {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    p {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      color: rgb(102, 102, 102);
+      transition: all ease-in 0.4s;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        height: 2px;
+        width: 0;
+        background-color: var(--text-color-purple);
+        transition: width 0.3s ease;
+      }
+      &:hover::after {
+        width: 100%;
+      }
+      &:hover {
+        color: var(--text-color-purple);
+      }
+    }
+    h4 {
+      font-weight: 400;
+      color: rgb(102, 102, 102);
+    }
+    img {
+      width: 25px;
+    }
+  }
+}
