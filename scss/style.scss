@@ -4,6 +4,9 @@
 @use './components/slider';
 @use './components/card';
 @use './components/footer';
-@use './normalize.scss';
-@use './variable.scss'
+@use './normalize';
+@use './mixins';
+@use './variable'
+
+
 

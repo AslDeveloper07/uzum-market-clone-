@@ -114,33 +114,66 @@
         </div>
     </div>
     <!-- SWIPPER SLIDER -->
-
     <swiper-container class="mySwiper container" pagination="true" pagination-clickable="true" space-between="30"
-    centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
-    <swiper-slide>
-        <img src="./resource/img/slider1.jpg" alt="">
-    </swiper-slide>
-    <swiper-slide>
-        <img src="./resource/img/slider2.jpg" alt="">
-    </swiper-slide>
-    <swiper-slide>
-        <img src="./resource/img/slider3.jpg" alt="">
-    </swiper-slide>
-    <swiper-slide>
-        <img src="resource/img/slider4.jpg" alt="">
-    </swiper-slide>
-    <swiper-slide>
-        <img src="resource/img/slider5.jpg" alt="">
-    </swiper-slide>
-    <div class="autoplay-progress" slot="container-end">
-      <svg viewBox="0 0 48 48">
-        <circle cx="24" cy="24" r="20"></circle>
-      </svg>
-      <span></span>
-    </div>
-  </swiper-container>
+        centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
+        <swiper-slide>
+            <img src="./resource/img/slider1.jpg" alt="">
+        </swiper-slide>
+        <swiper-slide>
+            <img src="./resource/img/slider2.jpg" alt="">
+        </swiper-slide>
+        <swiper-slide>
+            <img src="./resource/img/slider3.jpg" alt="">
+        </swiper-slide>
+        <swiper-slide>
+            <img src="resource/img/slider4.jpg" alt="">
+        </swiper-slide>
+        <swiper-slide>
+            <img src="resource/img/slider5.jpg" alt="">
+        </swiper-slide>
+        <div class="autoplay-progress" slot="container-end">
+            <svg viewBox="0 0 48 48">
+                <circle cx="24" cy="24" r="20"></circle>
+            </svg>
+            <span></span>
+        </div>
+    </swiper-container>
 
+    <!-- CARD SECTION -->
+    <!-- <div class="cards container">
+        <div class="card">
+            <div class="card_image">
+                <img src="./resource/img/11.jpg" alt="">
+            </div>
+            <div class="card_text">
+                <h4>
+                    Еrkaklar mokasinlari Loro Piana, 100% haqiqiy teri va setkadan tikilgan
+                </h4>
+                <p>
+                    <i class="ri-star-s-fill"></i>
+                    4.9 (322 ta sharhlar)
+                </p>
+                <div class="card_highlight">
+                    <p>
+                        1.234 so'm oyiga
+                    </p>
+                </div>
+                <div class="sale">
+                    <div class="sale_text">
+                        <p>Arzon narx kafolati</p>
+                        <h2>
+                            11 990
+                        </h2>
+                    </div>
+                    <div class="savat">
+                        <i class="ri-shopping-bag-4-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
+    <div class="market-container" id="market-container"></div>
 
 
 
@@ -171,11 +204,13 @@
 
         const swiperEl = document.querySelector("swiper-container");
         swiperEl.addEventListener("autoplaytimeleft", (e) => {
-          const [swiper, time, progress] = e.detail;
-          progressCircle.style.setProperty("--progress", 1 - progress);
-          progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+            const [swiper, time, progress] = e.detail;
+            progressCircle.style.setProperty("--progress", 1 - progress);
+            progressContent.textContent = `${Math.ceil(time / 1000)}s`;
         });
-      </script>
+    </script>
+    <script src="./javaScript/data.js"></script>
+    <script src="./javaScript/card.js"></script>
 </body>
 
 </html>
