@@ -1,5 +1,5 @@
-    // Card bosilganda buladigan
-    class UzumMarket {
+      // Main Application
+      class UzumMarket {
         constructor() {
             this.products = [];
             this.init();
@@ -22,18 +22,25 @@
         }
 
         async loadProducts() {
-// Local storage uchun kod
+            // Try to load from local storage first
             const cachedProducts = this.getFromStorage('products');
             const cacheTimestamp = this.getFromStorage('cacheTimestamp');
 
+            // Use cache if it's less than 1 hour old
             if (cachedProducts && cacheTimestamp && (Date.now() - cacheTimestamp) < 3600000) {
                 return cachedProducts;
             }
 
+            // Otherwise fetch from API or use fallback
             try {
+                // In a real app, this would be an actual API call
+                // const response = await fetch('https://api.example.com/products');
+                // const products = await response.json();
 
+                // For demo purposes, we'll use our fallback data
                 const products = this.getFallbackData();
 
+                // Save to local storage
                 this.saveToStorage('products', products);
                 this.saveToStorage('cacheTimestamp', Date.now());
 
@@ -41,16 +48,19 @@
             } catch (error) {
                 console.error('Error fetching products:', error);
 
+                // If API fails but we have cached data, use that
                 if (cachedProducts) {
                     console.log('Using cached data due to API error');
                     return cachedProducts;
                 }
 
+                // If no cached data, use fallback
                 console.log('Using fallback data');
                 return this.getFallbackData();
             }
         }
 
+        
 
         getFromStorage(key) {
             const item = localStorage.getItem(key);
@@ -118,7 +128,7 @@
                         </div>
 
                         <div class="delivery-info">
-                            <i class="ri-truck-line"></i>
+                            <i class="ri-luggage-cart-fill"></i>
                             <span>${product.deliveryTime}</span>
                         </div>
 
@@ -131,7 +141,7 @@
                         </div>
 
                         <div class="sold-count">
-                            <i class="ri-shopping-bag-line"></i>
+                           <i class="ri-shopping-bag-4-line"></i>
                             <span>${product.sold} sotilgan</span>
                         </div>
                     </div>

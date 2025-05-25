@@ -1,10 +1,9 @@
-
 getFallbackData(); {
   return [
       {
           id: 1,
           brand: "Samsung",
-          productName: "Samsung Galaxy A54 5G 128GB Smartphone",
+          productName: "Samsung Galaxy A54 5G ",
           description: "Yangi avlod Samsung Galaxy A54 5G smartfoni. 6.4 dyuymli Super AMOLED ekran, 128GB xotira, 50MP asosiy kamera. 5G qo'llab-quvvatlash, 5000mAh quvvatli batareya va 25W tez zaryadlash. IP67 suv va changga chidamlilik.",
           price: 499.99,
           discount: 10,
@@ -17,10 +16,10 @@ getFallbackData(); {
           isTopSeller: true,
           addedDate: "2025-05-20",
           images: [
-            './resource/img/1.jpg',
-            './resource/img/2.jpg',
-            './resource/img/3.jpg',
-            './resource/img/4.jpg'
+              "https://i.imgur.com/Jn3v9Qa.jpg",
+              "https://i.imgur.com/Jn3v9Qa.jpg",
+              "https://i.imgur.com/Jn3v9Qa.jpg",
+              "https://i.imgur.com/Jn3v9Qa.jpg"
           ]
       },
       {
@@ -39,10 +38,10 @@ getFallbackData(); {
           isTopSeller: false,
           addedDate: "2025-05-18",
           images: [
-            './resource/img/5.jpg',
-            './resource/img/6.jpg',
-            './resource/img/7.jpg',
-            './resource/img/8.jpg'
+              "https://i.imgur.com/pLQxWZb.jpg",
+              "https://i.imgur.com/pLQxWZb.jpg",
+              "https://i.imgur.com/pLQxWZb.jpg",
+              "https://i.imgur.com/pLQxWZb.jpg"
           ]
       },
       {
@@ -61,10 +60,10 @@ getFallbackData(); {
           isTopSeller: false,
           addedDate: "2025-05-15",
           images: [
-            './resource/img/9.jpg',
-            './resource/img/10.jpg',
-            './resource/img/11.jpg',
-            './resource/img/12.jpg'
+              "https://i.imgur.com/QzYtqWj.jpg",
+              "https://i.imgur.com/QzYtqWj.jpg",
+              "https://i.imgur.com/QzYtqWj.jpg",
+              "https://i.imgur.com/QzYtqWj.jpg"
           ]
       },
       {
@@ -83,10 +82,10 @@ getFallbackData(); {
           isTopSeller: true,
           addedDate: "2025-05-22",
           images: [
-            './resource/img/13.jpg',
-            './resource/img/14.jpg',
-            './resource/img/15.jpg',
-            './resource/img/16.jpg'
+              "https://i.imgur.com/VnQJZrx.jpg",
+              "https://i.imgur.com/VnQJZrx.jpg",
+              "https://i.imgur.com/VnQJZrx.jpg",
+              "https://i.imgur.com/VnQJZrx.jpg"
           ]
       },
       {
@@ -105,10 +104,10 @@ getFallbackData(); {
           isTopSeller: true,
           addedDate: "2025-05-23",
           images: [
-            './resource/img/17.jpg',
-            './resource/img/18.jpg',
-            './resource/img/19.jpg',
-            './resource/img/20.jpg'
+              "https://i.imgur.com/3JQYV9L.jpg",
+              "https://i.imgur.com/3JQYV9L.jpg",
+              "https://i.imgur.com/3JQYV9L.jpg",
+              "https://i.imgur.com/3JQYV9L.jpg"
           ]
       },
       {
@@ -127,10 +126,10 @@ getFallbackData(); {
           isTopSeller: true,
           addedDate: "2025-05-19",
           images: [
-            './resource/img/1.jpg',
-            './resource/img/2.jpg',
-            './resource/img/3.jpg',
-            './resource/img/4.jpg'
+              "https://i.imgur.com/Kc1XZtT.jpg",
+              "https://i.imgur.com/Kc1XZtT.jpg",
+              "https://i.imgur.com/Kc1XZtT.jpg",
+              "https://i.imgur.com/Kc1XZtT.jpg"
           ]
       },
       {
@@ -149,10 +148,10 @@ getFallbackData(); {
           isTopSeller: false,
           addedDate: "2025-05-21",
           images: [
-            './resource/img/5.jpg',
-            './resource/img/6.jpg',
-            './resource/img/7.jpg',
-            './resource/img/8.jpg'
+              "https://i.imgur.com/7nZlYfH.jpg",
+              "https://i.imgur.com/7nZlYfH.jpg",
+              "https://i.imgur.com/7nZlYfH.jpg",
+              "https://i.imgur.com/7nZlYfH.jpg"
           ]
       },
       {
@@ -171,10 +170,10 @@ getFallbackData(); {
           isTopSeller: false,
           addedDate: "2025-05-17",
           images: [
-              './resource/img/9.jpg',
-              './resource/img/10.jpg',
-              './resource/img/11.jpg',
-              './resource/img/12.jpg'
+              "https://i.imgur.com/5XZwWqB.jpg",
+              "https://i.imgur.com/5XZwWqB.jpg",
+              "https://i.imgur.com/5XZwWqB.jpg",
+              "https://i.imgur.com/5XZwWqB.jpg"
           ]
       }
   ];

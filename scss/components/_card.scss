@@ -1,18 +1,4 @@
 
-:root {
-    --primary: #7000FF;
-    --primary-light: #F0E6FF;
-    --danger: #FF4D4F;
-    --success: #52C41A;
-    --warning: #FAAD14;
-    --text: #2B2B2B;
-    --text-secondary: #555;
-    --text-light: #888;
-    --border: #EEE;
-    --bg: #F8F8F8;
-    --card-bg: #FFF;
-}
-
 
 /* Container Styles */
 .market-container {
@@ -37,7 +23,7 @@
 }
 
 .market-card:hover {
-    transform: scale(1.02);
+    // transform: scale(1.02);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -67,18 +53,22 @@
     position: absolute;
     top: 12px;
     right: 12px;
-
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background-color: transparent;
     display: flex;
+    border: none;
     align-items: center;
     justify-content: center;
-    border: none;
     cursor: pointer;
     color: #CCC;
     font-size: 18px;
     transition: all 0.2s ease;
     z-index: 2;
+    i{
+        font-size: 22px;
+    }
 }
 
 .like-btn:hover {
@@ -124,11 +114,11 @@
 }
 
 .card-title {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 500;
     color: var(--text);
     margin-bottom: 10px;
-    height: 40px;
+    height: auto;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -143,7 +133,7 @@
 }
 
 .current-price {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--text);
 }
@@ -155,7 +145,7 @@
 }
 
 .discount-badge {
-    background-color: var(--danger);
+    background-color: var(--primary);
     color: white;
     padding: 2px 6px;
     border-radius: 4px;
@@ -167,9 +157,12 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 12px;
+    font-size: 16px;
     color: var(--text-light);
     margin-bottom: 10px;
+    i{
+        font-size: 15px;
+    }
 }
 
 .rating-container {
@@ -190,8 +183,18 @@
 }
 
 .sold-count {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--text-light);
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    i{
+        font-size: 19px;
+        &:hover{
+            color: var(--primary);
+        }
+    }
 }
 
 /* Modal Styles */
@@ -212,9 +215,9 @@
 
 .modal-content {
     background-color: var(--card-bg);
-    min-height: 90vh;
-    width: 100%;
-    max-width: 1400px;
+    min-height: 80vh;
+    width: 90%;
+    max-width: 1200px;
     border-radius: 12px;
     overflow: hidden;
     position: relative;
