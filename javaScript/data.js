@@ -1,3 +1,4 @@
+import './card'
 getFallbackData(); {
   return [
       {

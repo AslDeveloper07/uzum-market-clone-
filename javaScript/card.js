@@ -60,7 +60,7 @@
             }
         }
 
-        
+
 
         getFromStorage(key) {
             const item = localStorage.getItem(key);
@@ -141,7 +141,8 @@
                         </div>
 
                         <div class="sold-count">
-                           <i class="ri-shopping-bag-4-line"></i>
+                           <div class="savatcha">
+                           <i class="ri-shopping-bag-4-line"></i></div>
                             <span>${product.sold} sotilgan</span>
                         </div>
                     </div>

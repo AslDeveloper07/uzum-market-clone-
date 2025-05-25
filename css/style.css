@@ -47,6 +47,7 @@
   justify-content: space-between;
 }
 .katalog_card {
+  padding: 10px 0 20px 0;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -140,6 +141,19 @@ swiper-slide img:hover {
   transform: rotate(-90deg);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 16px;
+}
+
 /* Container Styles */
 .market-container {
   display: grid;
@@ -170,7 +184,7 @@ swiper-slide img:hover {
   position: relative;
   width: 100%;
   height: 240px;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -201,7 +215,7 @@ swiper-slide img:hover {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #CCC;
+  color: #ccc;
   font-size: 18px;
   transition: all 0.2s ease;
   z-index: 2;
@@ -262,7 +276,7 @@ swiper-slide img:hover {
   font-weight: 500;
   color: var(--text);
   margin-bottom: 10px;
-  height: auto;
+  height: 25px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -334,11 +348,27 @@ swiper-slide img:hover {
   justify-content: space-between;
   align-items: center;
 }
-.sold-count i {
-  font-size: 19px;
+.sold-count .savatcha {
+  width: 33px;
+  height: 33px;
+  border-radius: 50px;
+  background-color: transparent;
+  border: 1px solid rgba(127, 77, 255, 0.4941176471);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all ease 0.3s;
 }
-.sold-count i:hover {
+.sold-count .savatcha i {
+  font-size: 19px;
   color: var(--primary);
+  transition: all ease 0.2s;
+}
+.sold-count .savatcha i:hover {
+  color: var(--bg);
+}
+.sold-count .savatcha:hover {
+  background-color: var(--primary);
 }
 
 /* Modal Styles */
@@ -376,7 +406,7 @@ swiper-slide img:hover {
 
 .modal-images {
   width: 50%;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   padding: 40px;
   display: flex;
 }
@@ -530,7 +560,7 @@ swiper-slide img:hover {
 }
 
 .add-to-cart:hover {
-  background-color: #5A00D6;
+  background-color: #5a00d6;
 }
 
 /* Responsive Styles */
@@ -547,7 +577,8 @@ swiper-slide img:hover {
     flex-direction: column;
     min-height: auto;
   }
-  .modal-images, .modal-info {
+  .modal-images,
+  .modal-info {
     width: 100%;
   }
   .modal-images {
@@ -596,7 +627,7 @@ swiper-slide img:hover {
 }
 
 body {
-  padding: 16px;
+  padding: 0;
   margin: 0;
   font-family: "Lexend", sans-serif;
 }
