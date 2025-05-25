@@ -117,6 +117,15 @@
     <swiper-container class="mySwiper container" pagination="true" pagination-clickable="true" space-between="30"
         centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
         <swiper-slide>
+            <img src="./resource/img/uzum.jpg" alt="">
+        </swiper-slide>
+        <swiper-slide>
+            <img src="./resource/img/slider0.jpg" alt="">
+        </swiper-slide>
+        <swiper-slide>
+            <img src="./resource/img/ipheonw.jpg" alt="">
+        </swiper-slide>
+        <swiper-slide>
             <img src="./resource/img/slider1.jpg" alt="">
         </swiper-slide>
         <swiper-slide>
@@ -131,6 +140,15 @@
         <swiper-slide>
             <img src="resource/img/slider5.jpg" alt="">
         </swiper-slide>
+        <swiper-slide>
+            <img src="./resource/img/cooler.jpg" alt="">
+        </swiper-slide>
+        <swiper-slide>
+            <img src="./resource/img/bitiruvchi.jpg" alt="">
+        </swiper-slide>
+        <swiper-slide>
+            <img src="./resource/img//bolalar.jpg" alt="">
+        </swiper-slide>
         <div class="autoplay-progress" slot="container-end">
             <svg viewBox="0 0 48 48">
                 <circle cx="24" cy="24" r="20"></circle>
@@ -139,53 +157,53 @@
         </div>
     </swiper-container>
 
- <div class="market-container" id="market-container">
-    <!-- Cards will be loaded here -->
-</div>
+    <div class="market-container" id="market-container">
+        <!-- Cards will be loaded here -->
+    </div>
 
-<!-- Product Modal -->
-<div class="market-container" id="market-container">
+    <!-- Product Modal -->
+    <div class="market-container" id="market-container">
 
-    <!-- Cards will be loaded here -->
-</div>
+        <!-- Cards will be loaded here -->
+    </div>
 
-<!-- Product Modal -->
-<div id="productModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <div class="modal-images">
-                <div class="thumbnails-column" id="thumbnails">
-                    <!-- Thumbnails will be added here -->
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-images">
+                    <div class="thumbnails-column" id="thumbnails">
+                        <!-- Thumbnails will be added here -->
+                    </div>
+                    <div class="main-image-container">
+                        <img id="mainImage" class="main-image" src="" alt="Main Product Image">
+                    </div>
                 </div>
-                <div class="main-image-container">
-                    <img id="mainImage" class="main-image" src="" alt="Main Product Image">
+                <div class="modal-info">
+                    <h1 class="modal-title" id="modalTitle"></h1>
+                    <div class="modal-brand" id="modalBrand"></div>
+                    <div class="modal-price">
+                        <span class="modal-current-price" id="modalCurrentPrice"></span>
+                        <span class="modal-original-price" id="modalOriginalPrice"></span>
+                        <span class="modal-discount" id="modalDiscount"></span>
+                    </div>
+                    <div class="modal-rating">
+                        <div class="modal-stars" id="modalStars"></div>
+                        <span class="modal-reviews" id="modalReviews"></span>
+                    </div>
+                    <div class="modal-sold">
+                        <i class="ri-shopping-bag-line"></i>
+                        <span id="modalSold"></span>
+                    </div>
+                    <div class="modal-delivery" id="modalDelivery"></div>
+                    <p class="modal-description" id="modalDescription"></p>
+                    <button class="add-to-cart">
+                        <i class="ri-shopping-cart-2-line"></i> Savatga qo'shish
+                    </button>
                 </div>
-            </div>
-            <div class="modal-info">
-                <h1 class="modal-title" id="modalTitle"></h1>
-                <div class="modal-brand" id="modalBrand"></div>
-                <div class="modal-price">
-                    <span class="modal-current-price" id="modalCurrentPrice"></span>
-                    <span class="modal-original-price" id="modalOriginalPrice"></span>
-                    <span class="modal-discount" id="modalDiscount"></span>
-                </div>
-                <div class="modal-rating">
-                    <div class="modal-stars" id="modalStars"></div>
-                    <span class="modal-reviews" id="modalReviews"></span>
-                </div>
-                <div class="modal-sold">
-                    <i class="ri-shopping-bag-line"></i>
-                    <span id="modalSold"></span>
-                </div>
-                <div class="modal-delivery" id="modalDelivery"></div>
-                <p class="modal-description" id="modalDescription"></p>
-                <button class="add-to-cart">
-                    <i class="ri-shopping-cart-2-line"></i> Savatga qo'shish
-                </button>
             </div>
         </div>
     </div>
-</div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
