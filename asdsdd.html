@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>City Selector</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css"
-  integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA=="
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Uzum Market</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
   <style>
     * {
       margin: 0;
@@ -15,267 +13,144 @@
       font-family: Arial, sans-serif;
     }
 
-    body {
-      padding: 20px;
-    }
-
-    #openModalBtn {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    #openModalBtn:hover {
-      background-color: #45a049;
-    }
-
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
+    .container {
       width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.52);
-      z-index: 10;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
     }
 
-    .modal-overlay.active {
-      opacity: 1;
-    }
-
-    .modal-container {
-      position: fixed;
-      top: 0;
-      left: -100%;
-      width: 660px;
-      height: 100%;
-      background-color: white;
-      padding: 32px;
-      z-index: 11;
-      transition: left 0.3s ease;
-      overflow-y: auto;
-    }
-
-    .modal-container.active {
-      left: 0;
-    }
-
-    .modal-header {
+    .navbar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
+      gap: 20px;
+      padding: 15px 0;
     }
 
-    .modal-title {
-      font-size: 22px;
-      font-weight: 500;
+    .navbar_logo img {
+      height: 40px;
     }
 
-    .close-btn {
-      cursor: pointer;
-      width: 24px;
-      height: 24px;
-      font-size: 24px;
-      color: #666;
-    }
-
-    .modal-content {
-      height: calc(100% - 60px);
-      overflow-y: auto;
-      position: relative;
-    }
-
-    .search-container {
-      background-color: #EDEFF2;
-      border-radius: 12px;
-      padding: 12px;
+    .katalogika {
       display: flex;
       align-items: center;
       gap: 8px;
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      margin-bottom: 12px;
+      padding: 8px 16px;
+      background-color: #6c5ce7;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
     }
 
-    .search-icon {
-      width: 20px;
-      height: 20px;
+    .input_wrapper {
+      flex: 1;
+      position: relative;
     }
 
-    .search-input {
-      background-color: transparent;
-      border: none;
-      outline: none;
+    .input_wrapper input {
       width: 100%;
+      padding: 12px 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
       font-size: 16px;
-      font-weight: 500;
     }
 
-    .location-list {
-      width: 100%;
+    .search__btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
     }
 
-    .location-item {
+    .profile, .likes, .savat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .profile img, .likes img, .savat img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .profile p, .likes p, .savat p {
+      font-size: 12px;
+    }
+
+    /* Notification badge styles */
+    .savat {
+      position: relative;
+    }
+
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: 10px;
+      background-color: #ff4757;
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 12px 8px;
-      border-bottom: 1px solid #D7D7D9;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-
-    .location-item:hover {
-      background-color: #F5F5F5;
-    }
-
-    .location-name {
-      font-size: 16px;
-    }
-
-    .dostavka {
-      margin-top: 20px;
-      padding: 15px;
-      background-color: #f0f0f0;
-      border-radius: 8px;
-    }
-
-    .dostavka p {
-      margin: 0;
-      font-size: 16px;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <button id="openModalBtn">Shaharni tanlang</button>
-
-  <div class="dostavka">
-    <p id="selectedCity">Shahar tanlanmagan</p>
-  </div>
-
-  <div id="modalOverlay" class="modal-overlay"></div>
-
-  <div id="modalContainer" class="modal-container">
-    <div class="modal-header">
-      <h2 class="modal-title">Shaharni tanlang</h2>
-      <i id="closeModalBtn" class="ri-close-line close-btn"></i>
+  <div class="navbar container">
+    <div class="navbar_logo">
+      <img src="./resource/img/uzummarketlogo.png" alt="logo">
     </div>
-
-    <div class="modal-content">
-      <div class="search-container">
-        <i class="ri-search-line search-icon"></i>
-        <input id="searchInput" class="search-input" type="text" placeholder="Shaharni topish">
-      </div>
-
-      <div id="locationList" class="location-list">
-        <!-- Locations will be inserted here by JavaScript -->
-      </div>
+    <div class="katalogika">
+      <i class="ri-archive-stack-fill"></i>
+      Katalog
+    </div>
+    <div class="input_wrapper">
+      <input type="text" name="text" class="input" placeholder="Mahsulot va turkumlar izlash ">
+      <button class="search__btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22">
+          <path d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z" fill="#efeff1"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="profile">
+      <img src="./resource/svg/user.svg" alt="">
+      <p>Kirish</p>
+    </div>
+    <div class="likes">
+      <img src="./resource/svg/heart-svg.svg" alt="">
+      <p>Saralanganlar</p>
+    </div>
+    <div class="savat" id="savatBtn">
+      <img src="./resource/svg/savat.svg" alt="">
+      <p>Savat</p>
+      <div class="notification-badge" id="notificationBadge">0</div>
     </div>
   </div>
 
   <script>
-    // Mock city data (replace with your actual cityBase.js data)
-    const locations = [
-      "Toshkent", "Samarqand", "Buxoro", "Xiva", "Andijon",
-      "Namangan", "Farg'ona", "Nukus", "Urganch", "Navoiy",
-      "Jizzax", "Guliston", "Termiz", "Qarshi", "Angren",
-      "Chirchiq", "Bekobod", "Qo'qon", "Marg'ilon", "Shahrisabz"
-    ];
+    // Savat bosilganda notificationni oshirish
+    const savatBtn = document.getElementById('savatBtn');
+    const notificationBadge = document.getElementById('notificationBadge');
+    let counter = 0;
 
-    // DOM elements
-    const openModalBtn = document.getElementById('openModalBtn');
-    const modalOverlay = document.getElementById('modalOverlay');
-    const modalContainer = document.getElementById('modalContainer');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const searchInput = document.getElementById('searchInput');
-    const locationList = document.getElementById('locationList');
-    const selectedCity = document.getElementById('selectedCity');
+    savatBtn.addEventListener('click', function() {
+      counter++;
+      notificationBadge.textContent = counter;
 
-    // Open modal function
-    function openModal() {
-      modalOverlay.style.display = 'block';
-      modalContainer.style.display = 'block';
+      // Animation effect
+      notificationBadge.style.transform = 'scale(1.2)';
       setTimeout(() => {
-        modalOverlay.classList.add('active');
-        modalContainer.classList.add('active');
-      }, 10);
-      renderLocations(locations); // Render all locations initially
-    }
-
-    // Close modal function
-    function closeModal() {
-      modalOverlay.classList.remove('active');
-      modalContainer.classList.remove('active');
-      setTimeout(() => {
-        modalOverlay.style.display = 'none';
-        modalContainer.style.display = 'none';
-      }, 300);
-      searchInput.value = ''; // Clear search input
-    }
-
-    // Render locations function
-    function renderLocations(cities) {
-      locationList.innerHTML = ''; // Clear previous results
-
-      if (cities.length === 0) {
-        locationList.innerHTML = '<div class="location-item"><p class="location-name">Hech qanday shahar topilmadi</p></div>';
-        return;
-      }
-
-      cities.forEach(city => {
-        const locationItem = document.createElement('div');
-        locationItem.className = 'location-item';
-
-        const locationName = document.createElement('p');
-        locationName.className = 'location-name';
-        locationName.textContent = city;
-
-        const arrowIcon = document.createElement('i');
-        arrowIcon.className = 'ri-arrow-right-s-line';
-        arrowIcon.style.fontSize = '20px';
-        arrowIcon.style.color = '#666';
-
-        locationItem.appendChild(locationName);
-        locationItem.appendChild(arrowIcon);
-        locationList.appendChild(locationItem);
-
-        // Add click handler for each location
-        locationItem.addEventListener('click', () => {
-          selectedCity.textContent = city;
-          closeModal();
-        });
-      });
-    }
-
-    // Filter locations based on search input
-    function filterLocations() {
-      const searchTerm = searchInput.value.toLowerCase();
-      const filtered = locations.filter(city =>
-        city.toLowerCase().startsWith(searchTerm)
-      );
-      renderLocations(filtered);
-    }
-
-    // Event listeners
-    openModalBtn.addEventListener('click', openModal);
-    closeModalBtn.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', closeModal);
-    searchInput.addEventListener('input', filterLocations);
-
-    // Close modal when pressing Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modalContainer.style.display === 'block') {
-        closeModal();
-      }
+        notificationBadge.style.transform = 'scale(1)';
+      }, 200);
     });
   </script>
 </body>
