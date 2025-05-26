@@ -281,7 +281,6 @@ swiper-slide img:hover {
   margin-top: 40px;
 }
 
-/* Card Styles */
 .market-card {
   background-color: var(--card-bg);
   border-radius: 12px;
@@ -498,44 +497,20 @@ swiper-slide img:hover {
   background-color: var(--primary);
 }
 
-/* Modal Styles */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  z-index: 1000;
-  overflow-y: auto;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  background-color: var(--card-bg);
-  min-height: 80vh;
-  width: 90%;
-  max-width: 1200px;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  margin: 40px auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
 .modal-header {
   display: flex;
   min-height: 80vh;
+  height: auto;
+  position: relative;
 }
 
 .modal-images {
   width: 50%;
-  background-color: #fafafa;
   padding: 40px;
   display: flex;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .thumbnails-column {
@@ -544,6 +519,10 @@ swiper-slide img:hover {
   flex-direction: column;
   gap: 10px;
   margin-right: 20px;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  flex-shrink: 0;
 }
 
 .thumbnail {
@@ -554,8 +533,9 @@ swiper-slide img:hover {
   cursor: pointer;
   border: 2px solid transparent;
   background-color: white;
-  padding: 10px 0;
+  padding: 2px 2px;
   transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .thumbnail:hover {
@@ -571,19 +551,28 @@ swiper-slide img:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  max-height: 600px;
+  min-height: 600px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .main-image {
   max-width: 100%;
-  max-height: 70vh;
+  max-height: 100%;
   object-fit: contain;
   border-radius: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .modal-info {
   width: 50%;
   padding: 60px 40px;
-  overflow-y: auto;
 }
 
 .modal-title {
@@ -690,7 +679,89 @@ swiper-slide img:hover {
   background-color: #5a00d6;
 }
 
-/* Responsive Styles */
+.product.container {
+  position: relative;
+  overflow: hidden;
+}
+
+.breadcrumbs {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  color: #555;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.breadcrumbs a {
+  color: #7f4dff;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs span {
+  margin: 0 5px;
+}
+
+.breadcrumbs .current {
+  color: #333;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .breadcrumbs {
+    font-size: 12px;
+  }
+}
+@media (max-width: 900px) {
+  .modal-header {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .modal-images,
+  .modal-info {
+    width: 100%;
+  }
+  .modal-images {
+    padding: 20px;
+    flex-direction: column-reverse;
+  }
+  .thumbnails-column {
+    width: 100%;
+    flex-direction: row;
+    margin-right: 0;
+    margin-top: 15px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  .thumbnail {
+    min-width: 60px;
+    height: 60px;
+  }
+  .modal-info {
+    padding: 30px 20px;
+  }
+}
+@media (max-width: 600px) {
+  .modal-title {
+    font-size: 22px;
+  }
+  .modal-current-price {
+    font-size: 24px;
+  }
+  .modal-original-price {
+    font-size: 16px;
+  }
+  .product-container {
+    width: 95%;
+    margin: 20px auto;
+  }
+}
 @media (max-width: 1200px) {
   .market-container {
     grid-template-columns: repeat(3, 1fr);
@@ -780,6 +851,16 @@ body {
   --bg: #f8f8f8;
   --card-bg: #fff;
   --brand-black: #21004d;
+  --primary: #7f4dff;
+  --primary-light: #b18aff;
+  --danger: #ff4d4d;
+  --warning: #ffb800;
+  --card-bg: #ffffff;
+  --bg: #f5f5f5;
+  --border: #e5e5e5;
+  --text: #333333;
+  --text-secondary: #555555;
+  --text-light: #888888;
 }
 
 /*# sourceMappingURL=style.css.map */
