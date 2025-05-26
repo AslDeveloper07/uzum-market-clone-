@@ -148,7 +148,7 @@ class UzumMarket {
       {
         id: 5,
         brand: "Lenovo ",
-        productName: 'Noutbuk Lenovo IdeaPad Slim',
+        productName: "Noutbuk Lenovo IdeaPad Slim",
         description:
           "Intel® Core™ Alder Lake-N100 protsessori bilan multitasking endi osonroq! 4 yadro va 4 oqim yordamida tezkor va samarali ishlang.8GB LPDDR5-4800 RAM va 256GB NVMe SSD bilan dasturlar yashin tezligida ishga tushadi.15.6 dyuymli Full HD IPS ekran ranglarni jonli va tiniq ko‘rsatadi.Dolby Audio™ texnologiyasi bilan jihozlangan ikki tomonlama 1.5W stereo dinamiklar – musiqadan zavqlaning va onlayn darslar samarali o‘ting!47 Wh batareya bilan uzoq ishlashga tayyor, sayohatlar va ofis uchun mukammal.  Texnologiyalar olamida yangi bosqichga chiqing! Lenovo V15 Gen 4 IAN – bu ishonchli, kuchli va samarali noutbuk bo‘lib, ish, o‘qish va multimedia vazifalarini bajarish uchun ideal tanlovdir.",
         price: 1999.99,
@@ -163,7 +163,7 @@ class UzumMarket {
         images: [
           "	https://images.uzum.uz/d0ac84tpb7f4kq78q0s0/original.jpg ",
 
-          "	https://images.uzum.uz/d0ac84tpb7f4kq78q0s0/original.jpg",
+          "https://images.uzum.uz/cuckqftht56ksubg7a7g/original.jpg",
 
           "	https://images.uzum.uz/cuhmnsc5j42bjc4chmbg/original.jpg",
           "	https://images.uzum.uz/cuhmnrs5j42bjc4chmb0/original.jpg",
