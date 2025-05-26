@@ -141,20 +141,6 @@ swiper-slide img:hover {
   transform: rotate(-90deg);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-body {
-  background-color: var(--bg);
-  color: var(--text);
-  padding: 16px;
-}
-
-/* Container Styles */
 .market-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -183,17 +169,18 @@ body {
 .card-image-container {
   position: relative;
   width: 100%;
-  height: 240px;
+  height: 280px;
   background-color: #f9f9f9;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  overflow: hidden;
 }
 
 .card-image {
-  max-width: 100%;
-  max-height: 100%;
+  width: 150%;
+  height: 150%;
   object-fit: contain;
   transition: transform 0.3s ease;
 }
@@ -220,6 +207,7 @@ body {
   transition: all 0.2s ease;
   z-index: 2;
 }
+
 .like-btn i {
   font-size: 22px;
 }
@@ -319,6 +307,7 @@ body {
   color: var(--text-light);
   margin-bottom: 10px;
 }
+
 .delivery-info i {
   font-size: 15px;
 }
@@ -348,7 +337,8 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.sold-count .savatcha {
+
+.savatcha {
   width: 33px;
   height: 33px;
   border-radius: 50px;
@@ -358,16 +348,20 @@ body {
   justify-content: center;
   align-items: center;
   transition: all ease 0.3s;
+  cursor: pointer;
 }
-.sold-count .savatcha i {
+
+.savatcha i {
   font-size: 19px;
   color: var(--primary);
   transition: all ease 0.2s;
 }
-.sold-count .savatcha i:hover {
+
+.savatcha:hover i {
   color: var(--bg);
 }
-.sold-count .savatcha:hover {
+
+.savatcha:hover {
   background-color: var(--primary);
 }
 

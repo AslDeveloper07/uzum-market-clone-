@@ -158,13 +158,12 @@
     </swiper-container>
 
     <div class="market-container" id="market-container">
-        <!-- Cards will be loaded here -->
+
     </div>
 
     <!-- Product Modal -->
     <div class="market-container" id="market-container">
 
-        <!-- Cards will be loaded here -->
     </div>
 
     <!-- Product Modal -->
@@ -205,19 +204,7 @@
         </div>
     </div>
 
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-    <script>
-        const progressCircle = document.querySelector(".autoplay-progress svg");
-        const progressContent = document.querySelector(".autoplay-progress span");
-
-        const swiperEl = document.querySelector("swiper-container");
-        swiperEl.addEventListener("autoplaytimeleft", (e) => {
-            const [swiper, time, progress] = e.detail;
-            progressCircle.style.setProperty("--progress", 1 - progress);
-            progressContent.textContent = `${Math.ceil(time / 1000)}s`;
-        });
-    </script>
     <script src="./javaScript/data.js"></script>
     <script src="./javaScript/card.js"></script>
 </body>

@@ -1,3 +1,4 @@
+
 getFallbackData();
 {
   return [
@@ -180,6 +181,7 @@ getFallbackData();
       addedDate: "2025-05-17",
       images: [
         "./resource/img/Apple.jpg",
+        
         "./resource/img/12.jpg",
         "./resource/img/12.jpg",
         "./resource/img/12.jpg",
