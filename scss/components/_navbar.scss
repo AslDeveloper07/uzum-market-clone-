@@ -128,5 +128,34 @@
     }
   }
 }
+@media (max-width: 600px) {
+  .navbar {
+    justify-content: space-between;
+    padding: 10px 10px;
+    gap: 2px;
 
+    &_logo,
+    .katalogika,
+    .profile,
+    .savat,
+    .likes p {
+      display: none;
+    }
 
+    .input_wrapper {
+      flex-grow: 1;
+      margin: 0 10px;
+
+      .input {
+        width: 100%;
+      }
+    }
+
+    .likes {
+      padding: 0;
+      img {
+        display: block;
+      }
+    }
+  }
+}

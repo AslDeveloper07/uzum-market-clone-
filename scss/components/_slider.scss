@@ -54,3 +54,32 @@ swiper-slide img {
   stroke-dasharray: 125.6;
   transform: rotate(-90deg);
 }
+
+
+ /* Desktop slider styles */
+ .desktop-slider {
+  display: block;
+}
+
+.mobile-slider {
+  display: none;
+}
+
+/* Mobile styles */
+@media (max-width: 600px) {
+  .desktop-slider {
+    display: none;
+  }
+
+  .mobile-slider {
+    display: block;
+    height: 250px; /* Adjust mobile slider height as needed */
+  }
+
+  .mobile-slider swiper-slide {
+    border-radius: 2px;
+    height: 250px; /* Match container height */
+    background: #fff; /* Adjust as needed */
+    padding: 10px 10px;
+  }
+}
