@@ -49,18 +49,31 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div id="modalOverlay" class="modal-overlay"></div>
-    <div id="modalContainer" class="modal-container">
-        <i id="closeModalBtn"></i>
-        <div class="modal-content">
-            <div class="search-container">
-                <i class="ri-search-line search-icon"></i>
-                <input id="searchInput" class="search-input" type="text" placeholder="Shaharni qidirish...">
-            </div>
-            <div id="locationList" class="location-list"></div>
+
+    <!-- Kirish modali -->
+<div class="modal-qoplamasi" id="modalQoplamasi">
+    <div class="kirish-modali">
+      <div class="modal-sarlavha">
+        <h2>Kirish</h2>
+        <span class="modalni-yopish">&times;</span>
+      </div>
+      <div class="modal-tanasi">
+        <div class="kiritish-guruhi">
+          <span class="ikonka">@</span>
+          <input id="modalEmail" type="email" placeholder="Elektron pochtangizni kiriting..." class="kiritish" />
         </div>
+        <div class="kiritish-guruhi">
+          <span class="ikonka"><i class="ri-key-line"></i></span>
+          <input id="modalParol" type="password" placeholder="Parolingizni kiriting..." class="kiritish" />
+        </div>
+        <p id="xatoXabari" class="xato-xabari"></p>
+      </div>
+      <div class="modal-oyoq">
+        <button id="kirishTugmasi" class="tugma">Kirish</button>
+      </div>
     </div>
+  </div>
+
     <div class="navbar container">
         <div class="navbar_logo">
             <img src="./resource/img/uzummarketlogo.png" alt="logo">
@@ -239,6 +252,73 @@
     </swiper-container>
 
     <div class="market-container" id="market-container"></div>
+
+    <footer class="footer container">
+        <div class="foot1">
+            <h4>Biz haqimizda</h4>
+            <p>Topshirish punktlari</p>
+            <p>Vakansiyalar</p>
+        </div>
+        <div class="foot2">
+            <h4>
+                Foydalanuvchilarga
+            </h4>
+            <p>Biz bilan bog'lanish</p>
+            <p>Savol-javob</p>
+        </div>
+        <div class="foot3">
+            <h4>
+                Tadbirorlarga
+            </h4>
+            <p>
+                Uzumda soting
+            </p>
+            <p>
+                Sotuvchi kabinetiga kirish
+            </p>
+        </div>
+        <div class="foot4">
+            <h4 style="margin-top: 60px;">
+                Ilovani yuklab olish
+            </h4>
+            <div class="ilova">
+                <div class="app">
+                    <img src="./resource/svg/apple-logo.svg" alt="">
+                    <h4>
+                        AppStore
+                    </h4>
+                </div>
+                <div class="google">
+                    <img src="./resource/svg/playMarket.svg" alt="">
+                    <h4>GooglePlay</h4>
+                </div>
+            </div>
+            <div class="social">
+                <h4>
+                    Uzum ijtimoiy tarmoqlar
+                </h4>
+                <div class="social_icon">
+                    <img src="./resource/svg/instagram.svg" alt="">
+                    <img src="./resource/svg/telegram.svg" alt="">
+                    <img src="./resource/svg/facebook.svg" alt="">
+                    <img src="./resource/svg/youtube.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="foot container">
+        <div class="maxfiy">
+            <h4>
+                Maxfiy kelishuv
+            </h4>
+            <h4>
+                Foydalanuvchi kelishuvi
+            </h4>
+        </div>
+        <p>
+            «2025© XK MCHJ «UZUM MARKET». STIR 309376127. Barcha huquqlar himoyalangan»
+        </p>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="./home.js"></script>
 </body>

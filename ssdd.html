@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login System</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    /* Profile Styles */
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 20px;
+      transition: background-color 0.2s;
+    }
+
+    .profile:hover {
+      background-color: #f1f1f1;
+    }
+
+    .profile img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .profile p {
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .login-modal {
+      background-color: white;
+      border-radius: 8px;
+      width: 400px;
+      max-width: 90%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .close-modal {
+      font-size: 24px;
+      cursor: pointer;
+      color: #666;
+    }
+
+    .close-modal:hover {
+      color: #333;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 8px;
+    }
+
+    .input {
+      border: none;
+      outline: none;
+      flex: 1;
+      padding: 8px;
+    }
+
+    .icon {
+      margin-right: 10px;
+      color: #666;
+    }
+
+    .btn {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #3367d6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Profile Section -->
+  <div class="profile">
+    <img src="./resource/svg/user.svg" alt="User">
+    <p>Kirish</p>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="login-modal">
+      <div class="modal-header">
+        <h2>Login</h2>
+        <span class="close-modal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <span class="icon">@</span>
+          <input id="modalEmail" type="email" placeholder="Enter your email..." class="input">
+        </div>
+        <div class="input-group">
+          <span class="icon"><i class="ri-key-line"></i></span>
+          <input id="modalPassword" type="password" placeholder="Enter your password..." class="input">
+        </div>
+        <p id="errorMessage" class="error-message"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="loginBtn" class="btn">Login</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // DOM Elements
+      const profileDiv = document.querySelector('.profile');
+      const modalOverlay = document.getElementById('modalOverlay');
+      const closeModal = document.querySelector('.close-modal');
+      const loginBtn = document.getElementById('loginBtn');
+      const modalEmail = document.getElementById('modalEmail');
+      const modalPassword = document.getElementById('modalPassword');
+      const errorMessage = document.getElementById('errorMessage');
+
+      // Show modal when profile is clicked
+      profileDiv.addEventListener('click', function() {
+        modalOverlay.style.display = 'flex';
+      });
+
+      // Close modal when overlay or X is clicked
+      modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay || e.target === closeModal) {
+          modalOverlay.style.display = 'none';
+          resetForm();
+        }
+      });
+
+      // Login button click handler
+      loginBtn.addEventListener('click', function() {
+        const email = modalEmail.value.trim();
+        const password = modalPassword.value.trim();
+
+        // Validate email
+        const emailRegex = /^[^\s@]+@gmail\.com$/;
+        if (!emailRegex.test(email)) {
+          showError('Email must end with @gmail.com');
+          return;
+        }
+
+        // Validate password (only numbers)
+        const passwordRegex = /^[0-9]+$/;
+        if (!passwordRegex.test(password)) {
+          showError('Password must contain only numbers');
+          return;
+        }
+
+        // If validation passes
+        hideError();
+
+        // Generate unique ID
+        const userId = Date.now().toString();
+
+        // Save to localStorage
+        const userData = {
+          id: userId,
+          email: email,
+          password: password
+        };
+
+        localStorage.setItem('userData', JSON.stringify(userData));
+
+        // Close modal and reset form
+        modalOverlay.style.display = 'none';
+        resetForm();
+
+        // Optional: Show success message
+        alert('Login successful! Data saved to localStorage.');
+      });
+
+      // Helper functions
+      function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+      }
+
+      function hideError() {
+        errorMessage.style.display = 'none';
+      }
+
+      function resetForm() {
+        modalEmail.value = '';
+        modalPassword.value = '';
+        hideError();
+      }
+    });
+  </script>
+</body>
+</html>

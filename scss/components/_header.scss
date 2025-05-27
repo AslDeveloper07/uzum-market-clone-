@@ -9,15 +9,16 @@
     align-items: center;
     height: 15px;
     .dostavka {
+      cursor: pointer;
       display: flex;
       align-items: center;
       gap: 15px;
-      .location{
+      .location {
         display: flex;
         align-items: center;
         gap: 3px;
-        i{
-            font-size: 22px;
+        i {
+          font-size: 22px;
         }
       }
     }
@@ -27,6 +28,8 @@
       align-items: center;
       gap: 20px;
       list-style: none;
+      cursor: pointer;
+
       .lang {
         display: flex;
         align-items: center;
@@ -35,14 +38,24 @@
           width: 20px;
         }
       }
-      .sale, .dastovka_punkt{
+      .sale,
+      .dastovka_punkt {
         color: var(--text-color-purple);
       }
     }
   }
 }
 @media (max-width: 600px) {
-.header{
-  display: none;
-}
+  .header{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .location{
+    margin-right: 90px;
+  }
+  .top_links{
+    display: none;
+  }
+
 }

@@ -12,6 +12,7 @@
   height: 15px;
 }
 .header .header_in .dostavka {
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -30,6 +31,7 @@
   align-items: center;
   gap: 20px;
   list-style: none;
+  cursor: pointer;
 }
 .header .header_in ul .lang {
   display: flex;
@@ -39,12 +41,21 @@
 .header .header_in ul .lang img {
   width: 20px;
 }
-.header .header_in ul .sale, .header .header_in ul .dastovka_punkt {
+.header .header_in ul .sale,
+.header .header_in ul .dastovka_punkt {
   color: var(--text-color-purple);
 }
 
 @media (max-width: 600px) {
   .header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .location {
+    margin-right: 90px;
+  }
+  .top_links {
     display: none;
   }
 }
@@ -72,6 +83,7 @@
   display: flex;
   gap: 7px;
   align-items: center;
+  cursor: pointer;
 }
 .navbar .katalogika i {
   font-size: 22px;
@@ -113,6 +125,14 @@
 .navbar .likes:hover {
   background-color: rgba(128, 128, 128, 0.199);
 }
+@media (max-width: 600px) {
+  .navbar .likes {
+    width: 40px;
+  }
+  .navbar .likes img {
+    width: 25px;
+  }
+}
 .navbar .savat {
   display: flex;
   align-items: center;
@@ -138,6 +158,11 @@
   align-items: center;
   height: 48px;
 }
+@media (max-width: 600px) {
+  .input_wrapper {
+    height: 45px;
+  }
+}
 .input_wrapper .input {
   width: 510px;
   height: 100%;
@@ -150,12 +175,11 @@
   padding: 7px 10px;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
-  margin-right: 1px;
   border: 2px solid rgba(180, 180, 180, 0.267);
   transition: all 0.2s ease;
 }
 .input_wrapper .input:hover {
-  cursor: pointer;
+  cursor: text;
   border: 2px solid rgba(111, 0, 255, 0.4039215686);
 }
 .input_wrapper .input:hover:focus {
@@ -173,6 +197,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 600px) {
+  .input_wrapper .search__btn {
+    width: 59px;
+  }
 }
 .input_wrapper .search__btn:hover {
   background-color: var(--text-color-purple);
@@ -227,7 +256,7 @@
   position: fixed;
   background-color: white;
   z-index: 1001;
-  overflow-y: auto;
+  overflow-y: hidden;
   transition: all 0.3s ease;
 }
 
@@ -446,6 +475,104 @@ swiper-slide img:hover {
     padding: 10px 10px;
   }
 }
+/* Modal uchun uslublar */
+.modal-qoplamasi {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.kirish-modali {
+  background-color: white;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.modal-sarlavha {
+  padding: 16px 24px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-sarlavha h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.modalni-yopish {
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.modalni-yopish:hover {
+  color: #333;
+}
+
+.modal-tanasi {
+  padding: 24px;
+}
+
+.modal-oyoq {
+  padding: 16px 24px;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.xato-xabari {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  display: none;
+}
+
+.kiritish-guruhi {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.kiritish {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 8px;
+}
+
+.ikonka {
+  margin-right: 10px;
+  color: #666;
+}
+
+.tugma {
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tugma:hover {
+  background-color: #3367d6;
+}
+
 .market-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -475,7 +602,6 @@ swiper-slide img:hover {
 }
 @media (max-width: 600px) {
   .market-card .market-card {
-    /* You might want to adjust these for mobile */
     border-radius: 8px;
   }
 }
@@ -492,17 +618,28 @@ swiper-slide img:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
   overflow: hidden;
   border-radius: 10px;
+}
+@media (max-width: 600px) {
+  .card-image-container {
+    width: 100%;
+    height: 330px;
+  }
 }
 
 .card-image {
   width: 140%;
   height: 140%;
-  object-fit: contain;
+  object-fit: cover;
   transition: transform 0.3s ease;
   border-radius: 10px;
+}
+@media (max-width: 600px) {
+  .card-image {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .market-card:hover .card-image {
@@ -745,6 +882,7 @@ swiper-slide img:hover {
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
+  margin-top: -60px;
 }
 
 .main-image {
@@ -761,6 +899,7 @@ swiper-slide img:hover {
 .modal-info {
   width: 50%;
   padding: 60px 40px;
+  overflow-y: auto;
 }
 
 .modal-title {
@@ -876,59 +1015,6 @@ swiper-slide img:hover {
   overflow: hidden;
 }
 
-.header {
-  background-color: var(--header-bg-color);
-  padding: 10px 0;
-  margin-bottom: 10px;
-}
-
-.header_in {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 15px;
-}
-
-.dostavka {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  cursor: pointer;
-}
-
-.location {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-
-.location i {
-  font-size: 22px;
-}
-
-.top_links ul {
-  height: 20px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  list-style: none;
-}
-
-.lang {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.lang img {
-  width: 20px;
-}
-
-.sale, .dastovka_punkt {
-  color: var(--text-color-purple);
-}
-
 @media (max-width: 900px) {
   .modal-header {
     flex-direction: column;
@@ -946,9 +1032,9 @@ swiper-slide img:hover {
     width: 100%;
     flex-direction: row;
     margin-right: 0;
-    margin-top: 15px;
     overflow-x: auto;
-    padding-bottom: 10px;
+    position: relative;
+    top: -50px;
   }
   .thumbnail {
     min-width: 60px;
@@ -956,6 +1042,7 @@ swiper-slide img:hover {
   }
   .modal-info {
     padding: 30px 20px;
+    margin-top: -60px;
   }
 }
 @media (max-width: 600px) {
@@ -1013,6 +1100,7 @@ swiper-slide img:hover {
 @media (max-width: 600px) {
   .market-container {
     grid-template-columns: 1fr;
+    margin-top: 10px;
   }
   .modal-title {
     font-size: 22px;
@@ -1028,6 +1116,110 @@ swiper-slide img:hover {
     margin: 20px auto;
   }
 }
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+.footer .foot1 {
+  margin-bottom: 60px;
+}
+.footer .foot1 h4 {
+  font-weight: 500;
+  margin-bottom: 10px;
+  margin-top: 60px;
+}
+.footer .foot1 p {
+  font-size: 16px;
+  color: rgb(134, 134, 134);
+}
+.footer .foot2 {
+  margin-bottom: 60px;
+}
+.footer .foot2 h4 {
+  font-weight: 500;
+  margin-bottom: 10px;
+  margin-top: 60px;
+}
+.footer .foot2 p {
+  font-size: 16px;
+  color: grey;
+}
+.footer .foot3 {
+  margin-bottom: 60px;
+}
+.footer .foot3 h4 {
+  font-weight: 500;
+  margin-bottom: 10px;
+  margin-top: 60px;
+}
+.footer .foot3 p {
+  font-size: 16px;
+  color: grey;
+}
+.footer .foot4 {
+  margin-bottom: 60px;
+}
+.footer .foot4 h4 {
+  font-weight: 500;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+.footer .foot4 .ilova {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.footer .foot4 .ilova .app {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.footer .foot4 .ilova .app img {
+  width: 30px;
+}
+.footer .foot4 .ilova .app h4 {
+  margin: 0 0;
+}
+.footer .foot4 .ilova .google {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.footer .foot4 .ilova .google h4 {
+  margin: 0 0;
+}
+.footer .foot4 .ilova .google .social {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.footer .foot4 .ilova .google .social .social_icon img {
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(128, 128, 128, 0.281);
+}
+.foot .maxfiy {
+  display: flex;
+  gap: 20px;
+}
+.foot .maxfiy h4 {
+  font-weight: 500;
+}
+.foot p {
+  color: rgba(128, 128, 128, 0.801);
+  padding: 18px 0;
+  font-size: 14px;
+}
+
 * {
   margin: 0;
   padding: 0;

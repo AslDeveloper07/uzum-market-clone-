@@ -1,0 +1,97 @@
+/* Modal uchun uslublar */
+.modal-qoplamasi {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .kirish-modali {
+    background-color: white;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .modal-sarlavha {
+    padding: 16px 24px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-sarlavha h2 {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  .modalni-yopish {
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+  }
+
+  .modalni-yopish:hover {
+    color: #333;
+  }
+
+  .modal-tanasi {
+    padding: 24px;
+  }
+
+  .modal-oyoq {
+    padding: 16px 24px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .xato-xabari {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
+  }
+
+  .kiritish-guruhi {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+  }
+
+  .kiritish {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 8px;
+  }
+
+  .ikonka {
+    margin-right: 10px;
+    color: #666;
+  }
+
+  .tugma {
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .tugma:hover {
+    background-color: #3367d6;
+  }
