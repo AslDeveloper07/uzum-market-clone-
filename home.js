@@ -1,27 +1,20 @@
-// Main Application
 class UzumMarket {
   constructor() {
     this.products = [];
     this.init();
   }
   async init() {
-    // Load products from cache or API
     this.products = await this.loadProducts();
 
-    // Load cart items
     this.cartItems = this.getFromStorage("cartItems") || [];
     this.cartCount = this.cartItems.length;
 
-    // Update cart notification
     this.updateCartNotification();
 
-    // Rest of your init code...
   }
   async init() {
-    // Load products from cache or API
     this.products = await this.loadProducts();
 
-    // If we don't have 20 products, duplicate some to reach 20
     while (this.products.length < 20) {
       this.products = this.products.concat(
         this.products.slice(0, 20 - this.products.length)
@@ -40,7 +33,6 @@ class UzumMarket {
     const cachedProducts = this.getFromStorage("products");
     const cacheTimestamp = this.getFromStorage("cacheTimestamp");
 
-    // Use cache if it's less than 1 hour old
     if (
       cachedProducts &&
       cacheTimestamp &&
@@ -49,10 +41,8 @@ class UzumMarket {
       return cachedProducts;
     }
 
-    // Otherwise use our fallback data with real product images
     const products = this.getFallbackData();
 
-    // Save to local storage
     this.saveToStorage("products", products);
     this.saveToStorage("cacheTimestamp", Date.now());
 
@@ -403,7 +393,6 @@ class UzumMarket {
   }
 
   setupEventListeners() {
-    // Like button click
     document.addEventListener("click", (e) => {
       if (e.target.closest(".like-btn")) {
         e.preventDefault();
@@ -417,7 +406,6 @@ class UzumMarket {
         icon.className = wasLiked ? "ri-heart-fill" : "ri-heart-line";
       }
 
-      // Cart button click
       if (e.target.closest(".savatcha")) {
         e.preventDefault();
         e.stopPropagation();
@@ -430,7 +418,6 @@ class UzumMarket {
         }
       }
 
-      // Card click (redirect to detail page)
       if (
         e.target.closest(".market-card") &&
         !e.target.closest(".like-btn") &&
@@ -439,14 +426,12 @@ class UzumMarket {
         const card = e.target.closest(".market-card");
         const productId = parseInt(card.dataset.id);
 
-        // Redirect to detail page with product ID
         window.location.href = `detailist.html?id=${productId}`;
       }
     });
   }
 }
 
-// Initialize the application when the page loads
 document.addEventListener("DOMContentLoaded", () => {
   new UzumMarket();
 });

@@ -13,66 +13,118 @@
 </head>
 
 <body>
-    <!-- HEADER -->
-    <div class="header">
-        <div class="header_in container">
-            <div class="dostavka" id="dostavka">
-                <div class="location">
-                    <i class="ri-map-pin-line"></i>
-                    <p id="selectedCity">Toshkent</p>
-                    <i class="ri-arrow-down-s-line"></i>
-                </div>
-                <div class="punkt">
-                    <p>Topshirish punktlari</p>
-                </div>
-            </div>
-            <div class="top_links">
-                <ul>
-                    <li class="sale">
-                        <p>Sotuvchi bo'lim</p>
-                    </li>
-                    <li class="dastovka_punkt">
-                        <p>Topshirish punkitini ochish</p>
-                    </li>
-                    <li>
-                        <p>Savol-javob</p>
-                    </li>
-                    <li>
-                        <p>Buyurtmalarim</p>
-                    </li>
-                    <div class="lang">
-                        <img src="./resource/img/uzb.png" alt="uzbke flag image">
-                        <p>O'zbekcha</p>
-                    </div>
-                </ul>
-            </div>
+     <!-- Header -->
+  <div class="header ">
+    <div class="header_in container">
+      <div class="dostavka" >
+        <div class="location" id="dostavka">
+          <i class="ri-map-pin-line"></i>
+          <p id="selectedCity">Toshkent</p>
+          <i class="ri-arrow-down-s-line"></i>
         </div>
-    </div>
-
-
-    <!-- Kirish modali -->
-<div class="modal-qoplamasi" id="modalQoplamasi">
-    <div class="kirish-modali">
-      <div class="modal-sarlavha">
-        <h2>Kirish</h2>
-        <span class="modalni-yopish">&times;</span>
+        <div class="punkt">
+          <p>Topshirish punktlari</p>
+        </div>
       </div>
-      <div class="modal-tanasi">
-        <div class="kiritish-guruhi">
-          <span class="ikonka">@</span>
-          <input id="modalEmail" type="email" placeholder="Elektron pochtangizni kiriting..." class="kiritish" />
-        </div>
-        <div class="kiritish-guruhi">
-          <span class="ikonka"><i class="ri-key-line"></i></span>
-          <input id="modalParol" type="password" placeholder="Parolingizni kiriting..." class="kiritish" />
-        </div>
-        <p id="xatoXabari" class="xato-xabari"></p>
-      </div>
-      <div class="modal-oyoq">
-        <button id="kirishTugmasi" class="tugma">Kirish</button>
+      <div class="top_links">
+        <ul>
+          <li class="sale">
+            <p>Sotuvchi bo'lim</p>
+          </li>
+          <li class="dastovka_punkt">
+            <p>Topshirish punkitini ochish</p>
+          </li>
+          <li>
+            <p>Savol-javob</p>
+          </li>
+          <li>
+            <p>Buyurtmalarim</p>
+          </li>
+          <div class="lang">
+            <img src="./resource/img/uzb.png" alt="uzbke flag image">
+            <p>O'zbekcha</p>
+          </div>
+        </ul>
       </div>
     </div>
   </div>
+
+  <!-- City Selection Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="city-modal">
+      <div class="modal-header">
+        <h2>Shaharni tanlang</h2>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="search-input">
+          <input type="text" id="citySearch" placeholder="Shahar nomini yozing...">
+        </div>
+        <div class="city-list" id="cityList">
+          <!-- Shahar nomlari jsda aylanib chiqiladi  -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+ <div class="overlay hidden"></div>
+
+ <div class="forma hidden">
+     <div class="logo">
+         <img src="https://via.placeholder.com/150x50?text=Logo" alt="Logo">
+     </div>
+
+     <form class="form" id="authForm">
+         <div class="input-group">
+             <div class="icon">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                     <polyline points="22,6 12,13 2,6"></polyline>
+                 </svg>
+             </div>
+             <input type="email" class="input" placeholder="Email" required>
+         </div>
+
+         <div class="input-group">
+             <div class="icon">
+                 <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                     <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path>
+                 </svg>
+             </div>
+             <input type="password" class="input" placeholder="Password" required>
+         </div>
+
+         <div class="options">
+             <label>
+                 <input type="checkbox"> Remember me
+             </label>
+             <a href="#">Forgot password?</a>
+         </div>
+
+         <p id="paragraph">Error message here</p>
+
+         <button type="submit" class="btn" id="submitBtn">Sign In</button>
+
+         <div class="signup">
+             Don't have an account? <a href="#" id="toggleForm">Sign up</a>
+         </div>
+
+         <div class="socials">
+             <button type="button" class="social-btn">
+                 <img src="https://via.placeholder.com/24x24?text=G" alt="Google">
+             </button>
+             <button type="button" class="social-btn">
+                 <img src="https://via.placeholder.com/24x24?text=F" alt="Facebook">
+             </button>
+             <button type="button" class="social-btn">
+                 <img src="https://via.placeholder.com/24x24?text=T" alt="Twitter">
+             </button>
+         </div>
+     </form>
+ </div>
 
     <div class="navbar container">
         <div class="navbar_logo">
@@ -92,7 +144,7 @@
                 </svg>
             </button>
         </div>
-        <div class="profile">
+        <div class="profile" id="profileDiv">
             <img src="./resource/svg/user.svg" alt="">
             <p>Kirish</p>
         </div>
@@ -105,7 +157,7 @@
         <div class="savat" id="savatBtn">
             <img src="./resource/svg/savat.svg" alt="">
             <p>Savat</p>
-            <!-- <div class="notification-badge" id="notificationBadge">0</div> -->
+
         </div>
     </div>
     <!-- KATALOG -->
@@ -321,6 +373,227 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="./home.js"></script>
+    <script>
+         // DOM Elements
+         const profileBtn = document.getElementById('profileDiv');
+        const overlay = document.querySelector('.overlay');
+        const forma = document.querySelector('.forma');
+        const authForm = document.getElementById('authForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const toggleForm = document.getElementById('toggleForm');
+        const errorParagraph = document.getElementById('paragraph');
+
+        // Toggle modal visibility
+        function toggleModal() {
+            overlay.classList.toggle('hidden');
+            forma.classList.toggle('hidden');
+        }
+
+        // Profile button click handler
+        profileBtn.addEventListener('click', function() {
+            toggleModal();
+
+            // Check if user is registered
+            if (localStorage.getItem('userEmail')) {
+                submitBtn.textContent = 'Sign In';
+            } else {
+                submitBtn.textContent = 'Sign Up';
+            }
+        });
+
+        // Toggle between Sign In and Sign Up
+        let isSignUp = false;
+        toggleForm.addEventListener('click', function(e) {
+            e.preventDefault();
+            isSignUp = !isSignUp;
+
+            if (isSignUp) {
+                submitBtn.textContent = 'Sign Up';
+                toggleForm.textContent = 'Sign In';
+            } else {
+                submitBtn.textContent = 'Sign In';
+                toggleForm.textContent = 'Sign Up';
+            }
+        });
+
+        // Form submission handler
+        authForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = this.querySelector('input[type="email"]').value;
+            const password = this.querySelector('input[type="password"]').value;
+
+            if (isSignUp || submitBtn.textContent === 'Sign Up') {
+                // Sign Up logic
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userPassword', password);
+
+                alert('Registration Successful!');
+                toggleModal();
+                this.reset();
+
+                // Update profile button state
+                submitBtn.textContent = 'Sign In';
+                isSignUp = false;
+                toggleForm.textContent = 'Sign Up';
+            } else {
+                // Sign In logic
+                const storedEmail = localStorage.getItem('userEmail');
+                const storedPassword = localStorage.getItem('userPassword');
+
+                if (email === storedEmail && password === storedPassword) {
+                    alert('Login Successful! Welcome back!');
+                    toggleModal();
+                    this.reset();
+                } else {
+                    errorParagraph.textContent = 'Invalid email or password!';
+                    errorParagraph.style.display = 'block';
+                    setTimeout(() => {
+                        errorParagraph.style.display = 'none';
+                    }, 3000);
+                }
+            }
+        });
+
+        // Close modal when clicking outside
+        overlay.addEventListener('click', function() {
+            toggleModal();
+        });
+// city modal
+
+ // City data
+
+ const locations = [
+      "Abdukarim", "Ahmad Yassaviy", "Alaja", "Alamli", "Altinko'l (Qo'ng'irot tumani)",
+      "Andijon", "Angor", "Angren", "Arsif", "Asaka", "Avval", "Babalakota",
+      "Baliqchi", "Balta", "Bardanko'l", "Baynalmilal", "Bekat", "Bekobod",
+      "Bekobod (Bog'dod tumani)", "Beruni", "Beruniy (Qiyichirchiq tumani)",
+      "Beshariq", "Beshkapa", "Beshkent", "Beshrabod", "Bo'jay", "Bo'ka",
+      "Bo'rbaliq", "Bo'ston", "Bo'ston (Oltinsoy tumani)", "Bo'ston (Ellikqali tumani)",
+      "Bo'ston (Zarbdor tumani)", "Bog'iturkon", "Bog'ot", "Bogdan", "Boyovut",
+      "Boysun", "Buloqboshi", "Bulung'ur", "Burchmullo", "Buvayda", "Buxoro",
+      "Bоg'dod", "Changi", "Chelak", "Chimboy", "Chimyon", "Chinabod", "Chinoz",
+      "Chirchiq", "Chiroqchi", "Cho'rindi", "Chorbog'", "Chorraha", "Chortoq",
+      "Chortoq (Guliston tumani)", "Chorvoq", "Chulkuvar", "Chust", "Chuvalachi",
+      "Dang'ara", "Dangir", "Dasht", "Dashtobod", "Dehoji", "Dehqonobod", "Denov",
+      "Denov (Shafirqon tumani)", "Do'rmon", "Do'stlik", "Do'stlik (Denov tumani)",
+      "Do'stobod", "Dusimbiy", "Egizbuloq", "Eshmatoul", "Eshonguzor", "Fargʻona",
+      "Farxod", "Fayziobod", "Forish", "Furqat", "G'alaba", "G'allaorol", "G'azalkent",
+      "G'o's", "G'oliblar", "G'uzor", "Gagarin", "Galaosiya", "Galaquduq", "Gijduvon",
+      "Gul", "Gulbahor", "Guliston", "Guliston (Yuqorichirchiq tumani)", "Gullanbog'",
+      "Gulobod", "Gulzar", "Gulzar (Paxtakor tumani)", "Gurlan", "Hamzaobod", "Hayit",
+      "Hisorak", "Humson", "Ibrat", "Iftixor", "Ishtixon", "Ispanza", "Istiqlol",
+      "Ittifoq", "Jalaquduq", "Jambul", "Jarqo'rg'on", "Jayraxona", "Jilva", "Jizzax",
+      "Jizzaxlik", "Jo'ynav", "Jomboy", "Jondor", "Juma", "Jumabazar (Bekobod tumani)",
+      "Jumabazar (Yuqori Chirchiq tumani)", "Jumashuy", "Jurek", "Juren", "Kakaydi",
+      "Kangli", "Kanimex", "Kaptarxona", "Karamaz", "Karkidan", "Karmana",
+      "Katta Ramadon", "Kattaqo'rg'on", "Kegayli", "Kelauchi", "Keles", "Kitob",
+      "Ko'hna Kalon", "Ko'hna Sho'rcha", "Ko'kdala", "Ko'ksaroy", "Kogon", "Kosari",
+      "Koson", "Kosonsoy", "Krasnogorsk", "Kulonxona", "Kumarik", "Kuyganyor", "Kuyun",
+      "Labiro'd", "Lagan", "Lagandi", "Lalmiqor", "Lolazor", "Loyish", "Madaniyat",
+      "Malikrabot", "Mang'it", "Margʻilon", "Marhamat", "Marjonbuloq", "Markaz",
+      "Mashak", "Mindon", "Misr", "Muborak", "Mug'lon", "Mulkanlik", "Mulloyon",
+      "Muratali", "Mustaqillik", "Namangan", "Namdanak", "Namuna", "Nanay",
+      "Narpay (Karmana tumani)", "Navbahor", "Navbahor (Namangan tumai)", "Navoiiy",
+      "Navoiy", "Navro'z", "Nazarbek", "Niyozbash", "Novaboshi", "Novkent", "Novmetan",
+      "Nukus", "Nurafshon", "Nurobod", "Nurobod (Ohangaron tumani)", "Nurota",
+      "O'rta Oqchi", "O'zbekiston", "Ohangaron", "Olimkent", "Olmaliq",
+      "Olmazor (Chinoz tumani)", "Olot", "Oltiariq", "Oltinariq", "Oltinko'l",
+      "Oqmang'it", "Oqoltin", "Oqqo'rg'on", "Oqtosh", "Ozod Vatan (Muzrobod tumani)",
+      "Parchanxas", "Pargos", "Parkent", "Paxta (Chinoz tumani)", "Paxtachi",
+      "Paxtakor", "Paxtaobod", "Paxtaobod (Sardoba tumani)", "Paxtazor", "Payariq",
+      "Payshanba", "Pishagar", "Piskent", "Pitnak", "Pop", "Povulgon", "Poytug'",
+      "Pushmon", "Qahramon", "Qamashi", "Qanliko'l", "Qaqir", "Qaravul", "Qarshi",
+      "Qashqari", "Qatartol", "Qibray", "Qiziltepa", "Qo'g'ali", "Qo'ng'irot",
+      "Qo'qon", "Qo'qonboy", "Qo'rg'oncha", "Qo'rg'ontepa", "Qo'shkupir",
+      "Qo'shqo'rg'on", "Qo'shrobod", "Qo'shtepa", "Qora Xitoy", "Qoraboy", "Qorako'l",
+      "Qoranko'l", "Qorao'zak", "Qoraqo'yli", "Qoraqushchi", "Qoraqushxona",
+      "Qorashina", "Qorasuv", "Qorasuv (Paxtaobod tumani)", "Qorayantoq",
+      "Qorovulbozor", "Qosh Yog'och", "Quduqcha", "Qumariqobod", "Qumqo'rg'on",
+      "Qurama (Oltinsoy tumani)", "Qurbonov", "Quva", "Quvasoy", "Quyaboshi",
+      "Rapqon", "Rishton", "Romitan", "Rovot", "Sabzikor", "Salar", "Samarqand",
+      "Samarqandquduq", "Sanam", "Sang", "Sarbozor", "Sardoba", "Sariasiya",
+      "Sarik (Qiziriq tumani)", "Saritepa", "Sasbaka", "Sayxun", "Shahrisabz",
+      "Shahrixon", "Shamaton", "Shampan", "Sherobod", "Shirin", "Sho'ralisoy",
+      "Sho'rchi", "Shodlik", "Shodlik (Oqoltin tumani)", "Shofirkon", "Shoyimbek",
+      "Shumanay", "Shоvоt", "Sijjak", "Sirdaryo", "So'fon", "So'lti", "Sohibkor",
+      "Sohil", "Soyliq", "Sukok", "Sulton Segizboyev", "Sutkibuloq", "Talkok",
+      "Taxiatosh", "Taxtako'pir", "Teraktagi", "Termez", "Timiryazev", "Tinchlik",
+      "To'qboy", "To'raqo'rg'on", "To'rtko'l", "Toshbuloq", "Toshkent", "Toshloq",
+      "Toshloq (Qiyichirchiq tumani)", "Toyloq", "Turkmen", "Tuyabo'g'iz",
+      "Uchko'prik", "Uchqizil", "Uchqo'rg'on", "Uchquduq", "Uchtepa", "Ulug'bek",
+      "Umar", "Unqo'rg'on", "Unxayat", "Uramas", "Urganch", "Urgut", "Usmat",
+      "Usmon Nosir", "Uychi", "Uyrat", "Uzun", "Vobkent", "Vodil", "Xalkobod",
+      "Xalkobod (Yangiyo'l tumani)", "Xalkobod (Kegayli tumani)", "Xanka",
+      "Xaqqulobod", "Xazarasp", "Xitoyan", "Xiva", "Xo'ja Yaqshba", "Xo'jaobod",
+      "Xo'jarabot", "Xo'jasoat", "Xo'jayli", "Xo'jikent (Bo'stonliq tumani)",
+      "Xonbandi", "Xonobod", "Xonziq", "Xorkash", "Xos", "Xovos", "Xusnobod",
+      "Yakkabog'", "Yallama", "Yangi Chinoz (Chinoz tumani)", "Yangi Marg'ilon",
+      "Yangi Mirishkar", "Yangi Nishon", "YangiHayot (Qiyichirchiq tumani)",
+      "Yangiarik", "Yangibozor", "Yangibozor (Peshku tumani)", "Yangibоzоr (Yangibоzоr tumani)",
+      "Yangiobod", "Yangiobod (Bo'ka tumani)", "Yangiovul", "Yangiqo'rg'on",
+      "Yangirabat", "Yangiyer", "Yangiyo'l", "Yarkin", "Yaypan", "Yom", "Yozyovon",
+      "Yuqori Bachqir", "Yuqori Valik", "Zafar", "Zafarobod", "Zafarobod (Konimex tumani)",
+      "Zangiota", "Zarafshon", "Zarbdor", "Zarkent", "Zavrok", "Ziyodin", "Zomin",
+      "Аyvalik"
+    ];
+
+    // DOM Elementlari
+    const dostavka = document.getElementById('dostavka');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const closeModale = document.querySelector('.close-modal');
+    const cityList = document.getElementById('cityList');
+    const citySearch = document.getElementById('citySearch');
+    const selectedCity = document.getElementById('selectedCity');
+
+        // console.log(dostavka,modalOverlay,closeModale,cityList,citySearch,selectedCity);
+
+
+    // location div bosilganda
+    dostavka.addEventListener('click', function() {
+      modalOverlay.style.display = 'flex';
+      renderCityList(locations);
+    });
+
+    //close button bosilganda yopiladi
+    modalOverlay.addEventListener('click', function(e) {
+      if (e.target === modalOverlay || e.target === closeModale) {
+        modalOverlay.style.display = 'none';
+      }
+    });
+
+    // Search funksiyasi
+    citySearch.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const filteredCities = locations.filter(city =>
+        city.toLowerCase().includes(searchTerm)
+      );
+      renderCityList(filteredCities);
+    });
+
+    // Shahar nomlarini search qilganda render qiladi
+    function renderCityList(cities) {
+      cityList.innerHTML = '';
+      cities.forEach(city => {
+        const cityItem = document.createElement('div');
+        cityItem.className = 'city-item';
+        cityItem.textContent = city;
+        cityItem.addEventListener('click', function() {
+          selectedCity.textContent = city;
+          modalOverlay.style.display = 'none';
+        });
+        cityList.appendChild(cityItem);
+      });
+    }
+
+    // escape key bosilganda modal yopilishi uchun
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modalOverlay.style.display === 'flex') {
+        modalOverlay.style.display = 'none';
+      }
+    });
+
+    </script>
 </body>
 
 </html>
