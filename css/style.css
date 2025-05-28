@@ -52,8 +52,8 @@
     display: flex;
     justify-content: space-between;
   }
-  .location {
-    margin-right: 90px;
+  .dostavka .location {
+    margin-right: 100px;
   }
   .top_links {
     display: none;
@@ -66,6 +66,11 @@
   align-items: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 400;
+}
+@media (max-width: 600px) {
+  .navbar {
+    margin-bottom: 20px;
+  }
 }
 .navbar_logo {
   display: flex;
@@ -92,14 +97,14 @@
 .navbar .profile {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
+  gap: 6px;
+  padding: 10px 15px;
   border-radius: 6px;
   transition: all ease 0.3s;
   cursor: pointer;
 }
 .navbar .profile img {
-  width: 20px;
+  width: 27px;
 }
 .navbar .profile p {
   font-size: 18px;
@@ -110,14 +115,16 @@
 .navbar .likes {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
+  gap: 7px;
+  padding: 8px 15px;
   border-radius: 6px;
   transition: all ease 0.3s;
   cursor: pointer;
 }
 .navbar .likes img {
-  width: 20px;
+  position: relative;
+  top: 4px;
+  width: 25px;
 }
 .navbar .likes p {
   font-size: 18px;
@@ -136,14 +143,14 @@
 .navbar .savat {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
+  gap: 5px;
+  padding: 10px 15px;
   border-radius: 6px;
   transition: all ease 0.3s;
   cursor: pointer;
 }
 .navbar .savat img {
-  width: 20px;
+  width: 25px;
 }
 .navbar .savat p {
   font-size: 18px;
@@ -201,6 +208,7 @@
 @media (max-width: 600px) {
   .input_wrapper .search__btn {
     width: 59px;
+    display: none;
   }
 }
 .input_wrapper .search__btn:hover {
@@ -480,8 +488,9 @@ swiper-slide img:hover {
   backdrop-filter: blur(10px);
   position: fixed;
   z-index: 900;
-  top: 200px;
-  left: 750px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Logo */
@@ -507,6 +516,7 @@ swiper-slide img:hover {
 /* Input Group */
 .input-group {
   position: relative;
+  margin-top: 15px;
 }
 
 .icon {
@@ -670,6 +680,202 @@ swiper-slide img:hover {
     width: 100%;
   }
 }
+/* Logo */
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.logo img {
+  width: 65%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input Group */
+.input-group {
+  position: relative;
+}
+
+.name-group {
+  display: flex;
+  gap: 10px;
+}
+
+.name-group .input-group {
+  flex: 1;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+.key-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #9ca3af;
+}
+
+/* Inputs */
+.input {
+  width: 100%;
+  padding: 10px 12px 10px 40px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.input:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 2px rgba(111, 0, 255, 0.2823529412);
+}
+
+/* Options */
+.options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.options a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.options a:hover {
+  text-decoration: underline;
+}
+
+/* Button */
+.btn {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: rgba(111, 0, 255, 0.7803921569);
+}
+
+/* Error message */
+.error-message {
+  color: red;
+  font-size: 15px;
+  text-align: center;
+  display: none;
+}
+
+/* Sign up */
+.signup {
+  text-align: center;
+  font-size: 14px;
+  color: #4b5563;
+  margin-top: 10px;
+}
+
+.signup a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.signup a:hover {
+  text-decoration: underline;
+}
+
+/* Social buttons */
+.socials {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  flex: 1;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  transition: 0.3s;
+}
+
+.social-btn:hover {
+  border-color: #3b82f6;
+  background-color: #e5e7eb;
+}
+
+.social-btn img {
+  width: 24px;
+}
+
+.hidden {
+  display: none;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.363);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  z-index: 5;
+}
+
+/* Cancel button */
+.cancel-btn {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #3b82f6;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  text-decoration: underline;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .forma {
+    padding: 24px 16px;
+    width: 90%;
+  }
+  .socials {
+    flex-direction: column;
+  }
+  .social-btn {
+    width: 100%;
+  }
+  .name-group {
+    flex-direction: column;
+  }
+}
 .market-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -677,12 +883,14 @@ swiper-slide img:hover {
   max-width: 1400px;
   margin: 0 auto;
   margin-top: 40px;
+  padding: 0 10px;
+  /* Barcha ekranlar uchun yon padding */
+  /* Responsive holatda */
 }
 @media (max-width: 600px) {
   .market-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
-    gap: 12px; /* Smaller gap on mobile */
-    padding: 0 10px; /* Add some side padding */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 }
 
@@ -802,6 +1010,7 @@ swiper-slide img:hover {
 
 .card-content {
   padding: 16px;
+  width: 100%;
 }
 
 .card-brand {
@@ -1088,6 +1297,7 @@ swiper-slide img:hover {
   border: none;
   padding: 16px 28px;
   font-size: 20px;
+  font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
   width: 100%;

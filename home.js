@@ -10,14 +10,13 @@ class UzumMarket {
     this.cartCount = this.cartItems.length;
 
     this.updateCartNotification();
-
   }
   async init() {
     this.products = await this.loadProducts();
 
-    while (this.products.length < 20) {
+    while (this.products.length < 10) {
       this.products = this.products.concat(
-        this.products.slice(0, 20 - this.products.length)
+        this.products.slice(0, 10 - this.products.length)
       );
     }
 
@@ -48,7 +47,7 @@ class UzumMarket {
 
     return products;
   }
-
+  //=============================================================================================>[Gigant data]
   getFallbackData() {
     return [
       {
@@ -321,72 +320,64 @@ class UzumMarket {
       card.dataset.id = product.id;
 
       card.innerHTML = `
-                <div class="card-image-container">
-                    <img src="${product.images[0]}" alt="${
+      <div class="card-image-container">
+          <img src="${product.images[0]}" alt="${
         product.productName
       }" class="card-image"
-                            onerror="this.onerror=null;this.src='https://images.uzum.uz/cuea8jc5j42bjc4bhr1g/original.jpg'">
-                    <button class="like-btn ${
-                      isLiked ? "active" : ""
-                    }" data-id="${product.id}">
-                        <i class="${
-                          isLiked ? "ri-heart-fill" : "ri-heart-line"
-                        }"></i>
-                    </button>
-                    ${
-                      product.isTopSeller
-                        ? '<div class="top-seller-badge">TOP</div>'
-                        : ""
-                    }
-                </div>
+                  onerror="this.onerror=null;this.src='https://images.uzum.uz/cuea8jc5j42bjc4bhr1g/original.jpg'">
+          <button class="like-btn ${isLiked ? "active" : ""}" data-id="${
+        product.id
+      }">
+              <i class="${isLiked ? "ri-heart-fill" : "ri-heart-line"}"></i>
+          </button>
+          ${
+            product.isTopSeller ? '<div class="top-seller-badge">TOP</div>' : ""
+          }
+      </div>
 
-                <div class="card-content">
-                    <div class="card-brand">${product.brand}</div>
-                    <h3 class="card-title">${product.productName}</h3>
+      <div class="card-content">
+          <div class="card-brand">${product.brand}</div>
+          <h3 class="card-title">${product.productName}</h3>
 
-                    <div class="price-container">
-                        <span class="current-price">$${discountedPrice.toFixed(
-                          2
-                        )}</span>
-                        ${
-                          product.discount > 0
-                            ? `<span class="original-price">$${product.price.toFixed(
-                                2
-                              )}</span>`
-                            : ""
-                        }
-                        ${
-                          product.discount > 0
-                            ? `<span class="discount-badge">-${product.discount}%</span>`
-                            : ""
-                        }
-                    </div>
+          <div class="price-container">
+              <span class="current-price">$${discountedPrice.toFixed(2)}</span>
+              ${
+                product.discount > 0
+                  ? `<span class="original-price">$${product.price.toFixed(
+                      2
+                    )}</span>`
+                  : ""
+              }
+              ${
+                product.discount > 0
+                  ? `<span class="discount-badge">-${product.discount}%</span>`
+                  : ""
+              }
+          </div>
 
-                    <div class="delivery-info">
-                        <i class="ri-truck-line"></i>
-                        <span>${product.deliveryTime}</span>
-                    </div>
+          <div class="delivery-info">
+              <i class="ri-truck-line"></i>
+              <span>${product.deliveryTime}</span>
+          </div>
 
-                    <div class="rating-container">
-                        <div class="rating-stars">
-                            ${"★".repeat(
-                              Math.floor(product.rating)
-                            )}${"☆".repeat(5 - Math.floor(product.rating))}
-                        </div>
-                        <span class="rating-count">${product.rating.toFixed(
-                          1
-                        )}</span>
-                        <span class="sold-count">(${product.reviews})</span>
-                    </div>
+          <div class="rating-container">
+              <div class="rating-stars">
+                  ${"★".repeat(Math.floor(product.rating))}${"☆".repeat(
+        5 - Math.floor(product.rating)
+      )}
+              </div>
+              <span class="rating-count">${product.rating.toFixed(1)}</span>
+              <span class="sold-count">(${product.reviews})</span>
+          </div>
 
-                    <div class="sold-count">
-                        <div class="savatcha" data-id="${product.id}">
-                            <i class="ri-shopping-basket-2-line"></i>
-                        </div>
-                        <span>${product.sold} sotilgan</span>
-                    </div>
-                </div>
-            `;
+          <div class="sold-count">
+              <div class="savatcha" data-id="${product.id}">
+                  <i class="ri-shopping-basket-2-line"></i>
+              </div>
+              <span>${product.sold} sotilgan</span>
+          </div>
+      </div>
+  `;
 
       container.appendChild(card);
     });
@@ -434,4 +425,768 @@ class UzumMarket {
 
 document.addEventListener("DOMContentLoaded", () => {
   new UzumMarket();
+});
+
+// ============================================ Login Form Modal uchun
+// DOM Elements
+const profileBtn = document.getElementById("profileBtn");
+const profileText = document.getElementById("profileText");
+const authModal = document.getElementById("authModal");
+const overlay = document.getElementById("overlay");
+const authForm = document.getElementById("authForm");
+const submitBtn = document.getElementById("submitBtn");
+const toggleForm = document.getElementById("toggleForm");
+const errorMessage = document.getElementById("errorMessage");
+const formFields = document.getElementById("formFields");
+const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+const nameFields = document.getElementById("nameFields");
+const nicknameInput = document.getElementById("nicknameInput");
+const nameInput = document.getElementById("nameInput");
+const emailInput = document.getElementById("emailInput");
+const passwordInput = document.getElementById("passwordInput");
+const options = document.querySelector(".options");
+
+// State variables
+let isSignUp = false;
+let isForgotPassword = false;
+
+// Toggle modal visibility
+function toggleModal() {
+  authModal.classList.toggle("hidden");
+  overlay.classList.toggle("hidden");
+
+  // Reset form when closing
+  if (authModal.classList.contains("hidden")) {
+    if (isForgotPassword) {
+      resetForm();
+    }
+    authForm.reset();
+  }
+}
+
+// form funksionalliklari
+function resetForm() {
+  isForgotPassword = false;
+  formFields.innerHTML = `
+         <div class="name-group" id="nameFields">
+             <div class="input-group">
+                 <div class="icon">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                         <circle cx="12" cy="7" r="4"></circle>
+                     </svg>
+                 </div>
+                 <input type="text" class="input" id="nameInput" placeholder="Name" ${
+                   isSignUp ? "required" : ""
+                 }>
+             </div>
+
+             <div class="input-group">
+                 <div class="icon">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                         <circle cx="12" cy="7" r="4"></circle>
+                     </svg>
+                 </div>
+                 <input type="text" class="input" id="nicknameInput" placeholder="Nickname" ${
+                   isSignUp ? "required" : ""
+                 }>
+             </div>
+         </div>
+
+         <div class="input-group">
+             <div class="icon">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                     <polyline points="22,6 12,13 2,6"></polyline>
+                 </svg>
+             </div>
+             <input type="email" class="input" id="emailInput" placeholder="Email" required>
+         </div>
+
+         <div class="input-group">
+             <div class="icon">
+                 <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round">
+                     <path
+                         d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
+                     </path>
+                 </svg>
+             </div>
+             <input type="password" class="input" id="passwordInput" placeholder="Password" required>
+         </div>
+     `;
+
+  // Reattach event listeners
+  document
+    .getElementById("nicknameInput")
+    .addEventListener("input", updateProfileText);
+
+  submitBtn.textContent = isSignUp ? "Sign Up" : "Sign In";
+  nameFields.style.display = isSignUp ? "flex" : "none";
+  errorMessage.style.display = "none";
+}
+
+// nickname yozilganda profiledagi text uzgaradi
+function updateProfileText() {
+  const nickname = document.getElementById("nicknameInput").value;
+  if (nickname) {
+    profileText.textContent = nickname;
+  }
+}
+
+// Profile button bosilganda modal chiqishi
+profileBtn.addEventListener("click", toggleModal);
+
+// toogle bosilganda SignIn va SignUp almashishi
+toggleForm.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (isForgotPassword) return;
+
+  isSignUp = !isSignUp;
+
+  submitBtn.textContent = isSignUp ? "Sign Up" : "Sign In";
+  toggleForm.textContent = isSignUp ? "Sign In" : "Sign Up";
+  nameFields.style.display = isSignUp ? "flex" : "none";
+});
+
+// Forgot Password handler
+forgotPasswordLink.addEventListener("click", function (e) {
+  e.preventDefault();
+  isForgotPassword = true;
+  options.style.display = "none";
+
+  //   forgot passworddagi kodni uzgartirgandagi funksionallik
+  formFields.innerHTML = `
+         <div class="input-group">
+             <div class="icon">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                     <polyline points="22,6 12,13 2,6"></polyline>
+                 </svg>
+             </div>
+             <input type="email" class="input" placeholder="Your Email" required>
+         </div>
+
+         <div class="input-group">
+             <div class="icon">
+                 <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round">
+                     <path
+                         d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
+                     </path>
+                 </svg>
+             </div>
+             <input type="password" class="input" placeholder="New Password" required>
+         </div>
+
+         <div class="input-group">
+             <div class="icon">
+                 <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                     stroke-linejoin="round">
+                     <path
+                         d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
+                     </path>
+                 </svg>
+             </div>
+             <input type="password" class="input" placeholder="Confirm New Password" required>
+         </div>
+     `;
+
+  submitBtn.textContent = "Reset password";
+
+  // cencel qilish uchun "Escape" bosiladi
+  const cancelBtn = document.createElement("a");
+  cancelBtn.className = "cancel-btn";
+  cancelBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    resetForm();
+  });
+
+  formFields.appendChild(cancelBtn);
+});
+
+// Form submission handler
+authForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  if (isForgotPassword) {
+    const email = this.querySelector('input[type="email"]').value;
+    const newPassword = this.querySelectorAll('input[type="password"]')[0]
+      .value;
+    const confirmPassword = this.querySelectorAll('input[type="password"]')[1]
+      .value;
+
+    const storedEmail = localStorage.getItem("userEmail");
+
+    if (email !== storedEmail) {
+      errorMessage.textContent = "Email mavjud emas";
+      errorMessage.style.display = "block";
+      setTimeout(() => {
+        errorMessage.style.display = "none";
+      }, 3000);
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      errorMessage.textContent = "Parollar mos emas";
+      errorMessage.style.display = "block";
+      setTimeout(() => {
+        errorMessage.style.display = "none";
+      }, 3000);
+      return;
+    }
+
+    // Update password
+    localStorage.setItem("userPassword", newPassword);
+    alert("Password reset successful!");
+    toggleModal();
+    resetForm();
+  } else if (isSignUp) {
+    // Sign Up logic
+    const name = nameInput.value;
+    const nickname = nicknameInput.value;
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userNickname", nickname);
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userPassword", password);
+
+    alert("Registration Successful!");
+    toggleModal();
+    this.reset();
+
+    // Update UI
+    isSignUp = true;
+    submitBtn.textContent = "Sign In";
+    toggleForm.textContent = "Sign Up";
+    nameFields.style.display = "none";
+
+    // Update profile text with nickname
+    profileText.textContent = nickname || name || email.split("@")[0];
+  } else {
+    // Sign In logic
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    const storedEmail = localStorage.getItem("userEmail");
+    const storedPassword = localStorage.getItem("userPassword");
+
+    if (email === storedEmail && password === storedPassword) {
+      alert("Login successful!");
+      toggleModal();
+      this.reset();
+
+      // Update profile text with stored nickname or name
+      const nickname = localStorage.getItem("userNickname");
+      const name = localStorage.getItem("userName");
+      profileText.textContent = nickname || name || email.split("@")[0];
+    } else {
+      errorMessage.textContent = "Email yoki password xato";
+      errorMessage.style.display = "block";
+      setTimeout(() => {
+        errorMessage.style.display = "none";
+      }, 700);
+    }
+  }
+});
+
+// Close modal when clicking outside
+overlay.addEventListener("click", toggleModal);
+
+// Escape key handler
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && !authModal.classList.contains("hidden")) {
+    if (isForgotPassword) {
+      resetForm();
+    } else {
+      toggleModal();
+    }
+  }
+});
+
+// Check if user is logged in when page loads
+window.addEventListener("load", function () {
+  if (localStorage.getItem("userEmail")) {
+    const nickname = localStorage.getItem("userNickname");
+    const name = localStorage.getItem("userName");
+    const email = localStorage.getItem("userEmail");
+
+    // Display nickname if available, otherwise name, otherwise email username
+    profileText.textContent = nickname || name || email.split("@")[0];
+  }
+});
+
+// Update profile text when nickname changes
+nicknameInput.addEventListener("input", updateProfileText);
+// =========================================================================================== [City modal]
+
+// =========================================================================================== [City data]
+
+const locations = [
+  "Abdukarim",
+  "Ahmad Yassaviy",
+  "Alaja",
+  "Alamli",
+  "Altinko'l (Qo'ng'irot tumani)",
+  "Andijon",
+  "Angor",
+  "Angren",
+  "Arsif",
+  "Asaka",
+  "Avval",
+  "Babalakota",
+  "Baliqchi",
+  "Balta",
+  "Bardanko'l",
+  "Baynalmilal",
+  "Bekat",
+  "Bekobod",
+  "Bekobod (Bog'dod tumani)",
+  "Beruni",
+  "Beruniy (Qiyichirchiq tumani)",
+  "Beshariq",
+  "Beshkapa",
+  "Beshkent",
+  "Beshrabod",
+  "Bo'jay",
+  "Bo'ka",
+  "Bo'rbaliq",
+  "Bo'ston",
+  "Bo'ston (Oltinsoy tumani)",
+  "Bo'ston (Ellikqali tumani)",
+  "Bo'ston (Zarbdor tumani)",
+  "Bog'iturkon",
+  "Bog'ot",
+  "Bogdan",
+  "Boyovut",
+  "Boysun",
+  "Buloqboshi",
+  "Bulung'ur",
+  "Burchmullo",
+  "Buvayda",
+  "Buxoro",
+  "Bоg'dod",
+  "Changi",
+  "Chelak",
+  "Chimboy",
+  "Chimyon",
+  "Chinabod",
+  "Chinoz",
+  "Chirchiq",
+  "Chiroqchi",
+  "Cho'rindi",
+  "Chorbog'",
+  "Chorraha",
+  "Chortoq",
+  "Chortoq (Guliston tumani)",
+  "Chorvoq",
+  "Chulkuvar",
+  "Chust",
+  "Chuvalachi",
+  "Dang'ara",
+  "Dangir",
+  "Dasht",
+  "Dashtobod",
+  "Dehoji",
+  "Dehqonobod",
+  "Denov",
+  "Denov (Shafirqon tumani)",
+  "Do'rmon",
+  "Do'stlik",
+  "Do'stlik (Denov tumani)",
+  "Do'stobod",
+  "Dusimbiy",
+  "Egizbuloq",
+  "Eshmatoul",
+  "Eshonguzor",
+  "Fargʻona",
+  "Farxod",
+  "Fayziobod",
+  "Forish",
+  "Furqat",
+  "G'alaba",
+  "G'allaorol",
+  "G'azalkent",
+  "G'o's",
+  "G'oliblar",
+  "G'uzor",
+  "Gagarin",
+  "Galaosiya",
+  "Galaquduq",
+  "Gijduvon",
+  "Gul",
+  "Gulbahor",
+  "Guliston",
+  "Guliston (Yuqorichirchiq tumani)",
+  "Gullanbog'",
+  "Gulobod",
+  "Gulzar",
+  "Gulzar (Paxtakor tumani)",
+  "Gurlan",
+  "Hamzaobod",
+  "Hayit",
+  "Hisorak",
+  "Humson",
+  "Ibrat",
+  "Iftixor",
+  "Ishtixon",
+  "Ispanza",
+  "Istiqlol",
+  "Ittifoq",
+  "Jalaquduq",
+  "Jambul",
+  "Jarqo'rg'on",
+  "Jayraxona",
+  "Jilva",
+  "Jizzax",
+  "Jizzaxlik",
+  "Jo'ynav",
+  "Jomboy",
+  "Jondor",
+  "Juma",
+  "Jumabazar (Bekobod tumani)",
+  "Jumabazar (Yuqori Chirchiq tumani)",
+  "Jumashuy",
+  "Jurek",
+  "Juren",
+  "Kakaydi",
+  "Kangli",
+  "Kanimex",
+  "Kaptarxona",
+  "Karamaz",
+  "Karkidan",
+  "Karmana",
+  "Katta Ramadon",
+  "Kattaqo'rg'on",
+  "Kegayli",
+  "Kelauchi",
+  "Keles",
+  "Kitob",
+  "Ko'hna Kalon",
+  "Ko'hna Sho'rcha",
+  "Ko'kdala",
+  "Ko'ksaroy",
+  "Kogon",
+  "Kosari",
+  "Koson",
+  "Kosonsoy",
+  "Krasnogorsk",
+  "Kulonxona",
+  "Kumarik",
+  "Kuyganyor",
+  "Kuyun",
+  "Labiro'd",
+  "Lagan",
+  "Lagandi",
+  "Lalmiqor",
+  "Lolazor",
+  "Loyish",
+  "Madaniyat",
+  "Malikrabot",
+  "Mang'it",
+  "Margʻilon",
+  "Marhamat",
+  "Marjonbuloq",
+  "Markaz",
+  "Mashak",
+  "Mindon",
+  "Misr",
+  "Muborak",
+  "Mug'lon",
+  "Mulkanlik",
+  "Mulloyon",
+  "Muratali",
+  "Mustaqillik",
+  "Namangan",
+  "Namdanak",
+  "Namuna",
+  "Nanay",
+  "Narpay (Karmana tumani)",
+  "Navbahor",
+  "Navbahor (Namangan tumai)",
+  "Navoiiy",
+  "Navoiy",
+  "Navro'z",
+  "Nazarbek",
+  "Niyozbash",
+  "Novaboshi",
+  "Novkent",
+  "Novmetan",
+  "Nukus",
+  "Nurafshon",
+  "Nurobod",
+  "Nurobod (Ohangaron tumani)",
+  "Nurota",
+  "O'rta Oqchi",
+  "O'zbekiston",
+  "Ohangaron",
+  "Olimkent",
+  "Olmaliq",
+  "Olmazor (Chinoz tumani)",
+  "Olot",
+  "Oltiariq",
+  "Oltinariq",
+  "Oltinko'l",
+  "Oqmang'it",
+  "Oqoltin",
+  "Oqqo'rg'on",
+  "Oqtosh",
+  "Ozod Vatan (Muzrobod tumani)",
+  "Parchanxas",
+  "Pargos",
+  "Parkent",
+  "Paxta (Chinoz tumani)",
+  "Paxtachi",
+  "Paxtakor",
+  "Paxtaobod",
+  "Paxtaobod (Sardoba tumani)",
+  "Paxtazor",
+  "Payariq",
+  "Payshanba",
+  "Pishagar",
+  "Piskent",
+  "Pitnak",
+  "Pop",
+  "Povulgon",
+  "Poytug'",
+  "Pushmon",
+  "Qahramon",
+  "Qamashi",
+  "Qanliko'l",
+  "Qaqir",
+  "Qaravul",
+  "Qarshi",
+  "Qashqari",
+  "Qatartol",
+  "Qibray",
+  "Qiziltepa",
+  "Qo'g'ali",
+  "Qo'ng'irot",
+  "Qo'qon",
+  "Qo'qonboy",
+  "Qo'rg'oncha",
+  "Qo'rg'ontepa",
+  "Qo'shkupir",
+  "Qo'shqo'rg'on",
+  "Qo'shrobod",
+  "Qo'shtepa",
+  "Qora Xitoy",
+  "Qoraboy",
+  "Qorako'l",
+  "Qoranko'l",
+  "Qorao'zak",
+  "Qoraqo'yli",
+  "Qoraqushchi",
+  "Qoraqushxona",
+  "Qorashina",
+  "Qorasuv",
+  "Qorasuv (Paxtaobod tumani)",
+  "Qorayantoq",
+  "Qorovulbozor",
+  "Qosh Yog'och",
+  "Quduqcha",
+  "Qumariqobod",
+  "Qumqo'rg'on",
+  "Qurama (Oltinsoy tumani)",
+  "Qurbonov",
+  "Quva",
+  "Quvasoy",
+  "Quyaboshi",
+  "Rapqon",
+  "Rishton",
+  "Romitan",
+  "Rovot",
+  "Sabzikor",
+  "Salar",
+  "Samarqand",
+  "Samarqandquduq",
+  "Sanam",
+  "Sang",
+  "Sarbozor",
+  "Sardoba",
+  "Sariasiya",
+  "Sarik (Qiziriq tumani)",
+  "Saritepa",
+  "Sasbaka",
+  "Sayxun",
+  "Shahrisabz",
+  "Shahrixon",
+  "Shamaton",
+  "Shampan",
+  "Sherobod",
+  "Shirin",
+  "Sho'ralisoy",
+  "Sho'rchi",
+  "Shodlik",
+  "Shodlik (Oqoltin tumani)",
+  "Shofirkon",
+  "Shoyimbek",
+  "Shumanay",
+  "Shоvоt",
+  "Sijjak",
+  "Sirdaryo",
+  "So'fon",
+  "So'lti",
+  "Sohibkor",
+  "Sohil",
+  "Soyliq",
+  "Sukok",
+  "Sulton Segizboyev",
+  "Sutkibuloq",
+  "Talkok",
+  "Taxiatosh",
+  "Taxtako'pir",
+  "Teraktagi",
+  "Termez",
+  "Timiryazev",
+  "Tinchlik",
+  "To'qboy",
+  "To'raqo'rg'on",
+  "To'rtko'l",
+  "Toshbuloq",
+  "Toshkent",
+  "Toshloq",
+  "Toshloq (Qiyichirchiq tumani)",
+  "Toyloq",
+  "Turkmen",
+  "Tuyabo'g'iz",
+  "Uchko'prik",
+  "Uchqizil",
+  "Uchqo'rg'on",
+  "Uchquduq",
+  "Uchtepa",
+  "Ulug'bek",
+  "Umar",
+  "Unqo'rg'on",
+  "Unxayat",
+  "Uramas",
+  "Urganch",
+  "Urgut",
+  "Usmat",
+  "Usmon Nosir",
+  "Uychi",
+  "Uyrat",
+  "Uzun",
+  "Vobkent",
+  "Vodil",
+  "Xalkobod",
+  "Xalkobod (Yangiyo'l tumani)",
+  "Xalkobod (Kegayli tumani)",
+  "Xanka",
+  "Xaqqulobod",
+  "Xazarasp",
+  "Xitoyan",
+  "Xiva",
+  "Xo'ja Yaqshba",
+  "Xo'jaobod",
+  "Xo'jarabot",
+  "Xo'jasoat",
+  "Xo'jayli",
+  "Xo'jikent (Bo'stonliq tumani)",
+  "Xonbandi",
+  "Xonobod",
+  "Xonziq",
+  "Xorkash",
+  "Xos",
+  "Xovos",
+  "Xusnobod",
+  "Yakkabog'",
+  "Yallama",
+  "Yangi Chinoz (Chinoz tumani)",
+  "Yangi Marg'ilon",
+  "Yangi Mirishkar",
+  "Yangi Nishon",
+  "YangiHayot (Qiyichirchiq tumani)",
+  "Yangiarik",
+  "Yangibozor",
+  "Yangibozor (Peshku tumani)",
+  "Yangibоzоr (Yangibоzоr tumani)",
+  "Yangiobod",
+  "Yangiobod (Bo'ka tumani)",
+  "Yangiovul",
+  "Yangiqo'rg'on",
+  "Yangirabat",
+  "Yangiyer",
+  "Yangiyo'l",
+  "Yarkin",
+  "Yaypan",
+  "Yom",
+  "Yozyovon",
+  "Yuqori Bachqir",
+  "Yuqori Valik",
+  "Zafar",
+  "Zafarobod",
+  "Zafarobod (Konimex tumani)",
+  "Zangiota",
+  "Zarafshon",
+  "Zarbdor",
+  "Zarkent",
+  "Zavrok",
+  "Ziyodin",
+  "Zomin",
+  "Аyvalik",
+];
+
+// DOM Elementlari
+const dostavka = document.getElementById("dostavka");
+const modalOverlay = document.getElementById("modalOverlay");
+const closeModale = document.querySelector(".close-modal");
+const cityList = document.getElementById("cityList");
+const citySearch = document.getElementById("citySearch");
+const selectedCity = document.getElementById("selectedCity");
+
+// console.log(dostavka,modalOverlay,closeModale,cityList,citySearch,selectedCity);
+
+// location div bosilganda
+dostavka.addEventListener("click", function () {
+  modalOverlay.style.display = "flex";
+  renderCityList(locations);
+});
+
+//close button bosilganda yopiladi
+modalOverlay.addEventListener("click", function (e) {
+  if (e.target === modalOverlay || e.target === closeModale) {
+    modalOverlay.style.display = "none";
+  }
+});
+
+// Search funksiyasi
+citySearch.addEventListener("input", function () {
+  const searchTerm = this.value.toLowerCase();
+  const filteredCities = locations.filter((city) =>
+    city.toLowerCase().includes(searchTerm)
+  );
+  renderCityList(filteredCities);
+});
+
+// Shahar nomlarini search qilganda render qiladi
+function renderCityList(cities) {
+  cityList.innerHTML = "";
+  cities.forEach((city) => {
+    const cityItem = document.createElement("div");
+    cityItem.className = "city-item";
+    cityItem.textContent = city;
+    cityItem.addEventListener("click", function () {
+      selectedCity.textContent = city;
+      modalOverlay.style.display = "none";
+    });
+    cityList.appendChild(cityItem);
+  });
+}
+
+// escape key bosilganda modal yopilishi uchun
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && modalOverlay.style.display === "flex") {
+    modalOverlay.style.display = "none";
+  }
 });

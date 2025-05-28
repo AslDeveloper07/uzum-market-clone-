@@ -1,3 +1,42 @@
+
+// // overflow-x
+// .market-container {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+//   gap: 16px;
+//   max-width: 1400px;
+//   margin: 0 auto;
+//   margin-top: 40px;
+//   padding: 0 10px;
+// }
+
+// .market-card {
+//   background-color: var(--card-bg);
+//   border-radius: 12px;
+//   overflow: hidden;
+//   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+//   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+//   cursor: pointer;
+//   position: relative;
+//   border: 1px solid var(--border);
+//   margin: 0 auto;
+// }
+
+// /* ✅ RESPONSIVE GORIZONTAL SCROLL */
+// @media (max-width: 600px) {
+//   .market-container {
+//     display: flex;
+//     flex-wrap: nowrap;
+//     overflow-x: auto;
+//     -webkit-overflow-scrolling: touch;
+//     gap: 12px;
+//   }
+
+//   .market-card {
+//     flex: 0 0 240px; /* Har bir card 240px bo‘lsin */
+//     border-radius: 8px;
+//   }
+// }
 .market-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -5,10 +44,13 @@
   max-width: 1400px;
   margin: 0 auto;
   margin-top: 40px;
+  padding: 0 10px;
+  /* Barcha ekranlar uchun yon padding */
+
+  /* Responsive holatda */
   @media (max-width: 600px) {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
-    gap: 12px; /* Smaller gap on mobile */
-    padding: 0 10px; /* Add some side padding */
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
   }
 }
 
@@ -22,10 +64,11 @@
   position: relative;
   border: 1px solid var(--border);
   margin: 0 auto;
+
   @media (max-width: 600px) {
-    .market-card {
-      border-radius: 8px;
-    }
+      .market-card {
+          border-radius: 8px;
+      }
   }
 }
 
@@ -43,9 +86,10 @@
   justify-content: center;
   overflow: hidden;
   border-radius: 10px;
+
   @media (max-width: 600px) {
-    width: 100%;
-  height: 330px;
+      width: 100%;
+      height: 330px;
   }
 }
 
@@ -55,11 +99,11 @@
   object-fit: cover;
   transition: transform 0.3s ease;
   border-radius: 10px;
-@media (max-width: 600px) {
-  width: 100%;
-  height: 100%;
-}
 
+  @media (max-width: 600px) {
+      width: 100%;
+      height: 100%;
+  }
 }
 
 .market-card:hover .card-image {
@@ -101,15 +145,15 @@
 
 @keyframes pulse {
   0% {
-    transform: scale(1);
+      transform: scale(1);
   }
 
   50% {
-    transform: scale(1.2);
+      transform: scale(1.2);
   }
 
   100% {
-    transform: scale(1);
+      transform: scale(1);
   }
 }
 
@@ -128,7 +172,7 @@
 
 .card-content {
   padding: 16px;
-  // width: 100%;
+  width: 100%;
 }
 
 .card-brand {
@@ -245,12 +289,14 @@
 .savatcha:hover {
   background-color: var(--primary);
 }
+
 .modal-header {
   display: flex;
   min-height: 80vh;
   height: auto;
   position: relative;
 }
+
 .modal-images {
   width: 50%;
   padding: 40px;
@@ -271,6 +317,7 @@
   position: relative;
   flex-shrink: 0;
 }
+
 .thumbnail {
   width: 80px;
   height: 90px;
@@ -305,6 +352,7 @@
   box-sizing: border-box;
   margin-top: -60px;
 }
+
 .main-image {
   max-width: 100%;
   max-height: 100%;
@@ -411,7 +459,7 @@
   border: none;
   padding: 16px 28px;
   font-size: 20px;
-  // font-weight: 600;
+  font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
   width: 100%;
@@ -421,7 +469,8 @@
   justify-content: center;
   gap: 8px;
 }
-.add-to-car i{
+
+.add-to-car i {
   font-size: 20px;
   font-weight: 300;
 }
@@ -430,137 +479,131 @@
   background-color: #5a00d6;
 }
 
-
 .product.container {
   position: relative;
   overflow: hidden;
 }
 
-
-
-
-
-
-// responsive
 @media (max-width: 900px) {
   .modal-header {
-    flex-direction: column;
-    min-height: auto;
+      flex-direction: column;
+      min-height: auto;
   }
 
   .modal-images,
   .modal-info {
-    width: 100%;
+      width: 100%;
   }
 
   .modal-images {
-    padding: 20px;
-    flex-direction: column-reverse;
+      padding: 20px;
+      flex-direction: column-reverse;
   }
 
   .thumbnails-column {
-    width: 100%;
-    flex-direction: row;
-    margin-right: 0;
-    overflow-x: auto;
-    position: relative;
-    top: -50px;
+      width: 100%;
+      flex-direction: row;
+      margin-right: 0;
+      overflow-x: auto;
+      position: relative;
+      top: -50px;
   }
 
   .thumbnail {
-    min-width: 60px;
-    height: 60px;
+      min-width: 60px;
+      height: 60px;
   }
 
   .modal-info {
-    padding: 30px 20px;
-    margin-top: -60px;
+      padding: 30px 20px;
+      margin-top: -60px;
   }
 }
 
 @media (max-width: 600px) {
   .modal-title {
-    font-size: 22px;
+      font-size: 22px;
   }
 
   .modal-current-price {
-    font-size: 24px;
+      font-size: 24px;
   }
 
   .modal-original-price {
-    font-size: 16px;
+      font-size: 16px;
   }
 
   .product-container {
-    width: 95%;
-    margin: 20px auto;
+      width: 95%;
+      margin: 20px auto;
   }
 }
+
 @media (max-width: 1200px) {
   .market-container {
-    grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 900px) {
   .market-container {
-    grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
   }
 
   .modal-header {
-    flex-direction: column;
-    min-height: auto;
+      flex-direction: column;
+      min-height: auto;
   }
 
   .modal-images,
   .modal-info {
-    width: 100%;
+      width: 100%;
   }
 
   .modal-images {
-    padding: 20px;
-    flex-direction: column-reverse;
+      padding: 20px;
+      flex-direction: column-reverse;
   }
 
   .thumbnails-column {
-    width: 100%;
-    flex-direction: row;
-    margin-right: 0;
-    margin-top: 15px;
-    overflow-x: auto;
-    padding-bottom: 10px;
+      width: 100%;
+      flex-direction: row;
+      margin-right: 0;
+      margin-top: 15px;
+      overflow-x: auto;
+      padding-bottom: 10px;
   }
 
   .thumbnail {
-    min-width: 60px;
-    height: 60px;
+      min-width: 60px;
+      height: 60px;
   }
 
   .modal-info {
-    padding: 30px 20px;
+      padding: 30px 20px;
   }
 }
 
 @media (max-width: 600px) {
   .market-container {
-    grid-template-columns: 1fr;
-    margin-top: 10px;
+      grid-template-columns: 1fr;
+      margin-top: 10px;
   }
 
   .modal-title {
-    font-size: 22px;
+      font-size: 22px;
   }
 
   .modal-current-price {
-    font-size: 24px;
+      font-size: 24px;
   }
 
   .modal-original-price {
-    font-size: 16px;
+      font-size: 16px;
   }
 
   .modal-content {
-    width: 95%;
-    margin: 20px auto;
+      width: 95%;
+      margin: 20px auto;
   }
 }
