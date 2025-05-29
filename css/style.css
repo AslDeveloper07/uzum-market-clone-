@@ -964,14 +964,14 @@ swiper-slide img:hover {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #ccc;
+  color: #ffffff;
   font-size: 18px;
   transition: all 0.2s ease;
   z-index: 2;
 }
 
 .like-btn i {
-  font-size: 22px;
+  font-size: 27px;
 }
 
 .like-btn:hover {

@@ -14,9 +14,9 @@ class UzumMarket {
   async init() {
     this.products = await this.loadProducts();
 
-    while (this.products.length < 10) {
+    while (this.products.length < 20) {
       this.products = this.products.concat(
-        this.products.slice(0, 10 - this.products.length)
+        this.products.slice(0, 20 - this.products.length)
       );
     }
 
@@ -440,294 +440,321 @@ const errorMessage = document.getElementById("errorMessage");
 const formFields = document.getElementById("formFields");
 const forgotPasswordLink = document.getElementById("forgotPasswordLink");
 const nameFields = document.getElementById("nameFields");
-const nicknameInput = document.getElementById("nicknameInput");
-const nameInput = document.getElementById("nameInput");
-const emailInput = document.getElementById("emailInput");
-const passwordInput = document.getElementById("passwordInput");
 const options = document.querySelector(".options");
 
 // State variables
 let isSignUp = false;
 let isForgotPassword = false;
 
+// Validation functions
+function validateEmail(email) {
+    const re = /^[a-zA-Z]+@gmail\.com$/; // Only text + @gmail.com
+    return re.test(email);
+}
+
+function validatePassword(password) {
+    return /^\d+$/.test(password); // Only numbers
+}
+
 // Toggle modal visibility
 function toggleModal() {
-  authModal.classList.toggle("hidden");
-  overlay.classList.toggle("hidden");
+    authModal.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
 
-  // Reset form when closing
-  if (authModal.classList.contains("hidden")) {
-    if (isForgotPassword) {
-      resetForm();
+    // Reset form when closing
+    if (authModal.classList.contains("hidden")) {
+        if (isForgotPassword) {
+            resetForm();
+        }
+        authForm.reset();
+        updateProfileFromStorage(); // Update profile text when modal closes
     }
-    authForm.reset();
-  }
 }
 
-// form funksionalliklari
+// Form functionality
 function resetForm() {
-  isForgotPassword = false;
-  formFields.innerHTML = `
-         <div class="name-group" id="nameFields">
-             <div class="input-group">
-                 <div class="icon">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                         <circle cx="12" cy="7" r="4"></circle>
-                     </svg>
-                 </div>
-                 <input type="text" class="input" id="nameInput" placeholder="Name" ${
-                   isSignUp ? "required" : ""
-                 }>
-             </div>
+    isForgotPassword = false;
+    formFields.innerHTML = `
+        <div class="name-group" id="nameFields">
+            <div class="input-group">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <input type="text" class="input" id="nameInput" placeholder="Name" ${isSignUp ? "required" : ""}>
+            </div>
 
-             <div class="input-group">
-                 <div class="icon">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                         <circle cx="12" cy="7" r="4"></circle>
-                     </svg>
-                 </div>
-                 <input type="text" class="input" id="nicknameInput" placeholder="Nickname" ${
-                   isSignUp ? "required" : ""
-                 }>
-             </div>
-         </div>
+            <div class="input-group">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <input type="text" class="input" id="nicknameInput" placeholder="Nickname" ${isSignUp ? "required" : ""}>
+            </div>
+        </div>
 
-         <div class="input-group">
-             <div class="icon">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                     <polyline points="22,6 12,13 2,6"></polyline>
-                 </svg>
-             </div>
-             <input type="email" class="input" id="emailInput" placeholder="Email" required>
-         </div>
+        <div class="input-group">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+            </div>
+            <input type="email" class="input" id="emailInput" placeholder="Email" required>
+        </div>
 
-         <div class="input-group">
-             <div class="icon">
-                 <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                     stroke-linejoin="round">
-                     <path
-                         d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
-                     </path>
-                 </svg>
-             </div>
-             <input type="password" class="input" id="passwordInput" placeholder="Password" required>
-         </div>
-     `;
+        <div class="input-group">
+            <div class="icon">
+                <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                        d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
+                    </path>
+                </svg>
+            </div>
+            <input type="password" class="input" id="passwordInput" placeholder="Password" required>
+        </div>
+    `;
 
-  // Reattach event listeners
-  document
-    .getElementById("nicknameInput")
-    .addEventListener("input", updateProfileText);
+    // Reattach event listeners
+    const nicknameInput = document.getElementById("nicknameInput");
+    if (nicknameInput) {
+        nicknameInput.addEventListener("input", function() {
+            const nickname = nicknameInput.value;
+            profileText.innerText = nickname;
+            localStorage.setItem("userNickname", nickname);
+        });
+    }
 
-  submitBtn.textContent = isSignUp ? "Sign Up" : "Sign In";
-  nameFields.style.display = isSignUp ? "flex" : "none";
-  errorMessage.style.display = "none";
+    submitBtn.textContent = isSignUp ? "Sign Up" : "Sign In";
+    nameFields.style.display = isSignUp ? "flex" : "none";
+    errorMessage.style.display = "none";
+    options.style.display = "flex";
+
+    // Update profile text from localStorage
+    updateProfileFromStorage();
 }
 
-// nickname yozilganda profiledagi text uzgaradi
-function updateProfileText() {
-  const nickname = document.getElementById("nicknameInput").value;
-  if (nickname) {
-    profileText.textContent = nickname;
-  }
+// Update profile from localStorage
+function updateProfileFromStorage() {
+    const storedNickname = localStorage.getItem("userNickname");
+    const storedName = localStorage.getItem("userName");
+    const storedEmail = localStorage.getItem("userEmail");
+
+    if (storedNickname) {
+        profileText.innerText = storedNickname;
+    } else if (storedName) {
+        profileText.innerText = storedName;
+    } else if (storedEmail) {
+        profileText.innerText = storedEmail.split("@")[0];
+    }
 }
 
-// Profile button bosilganda modal chiqishi
+// Event Listeners
 profileBtn.addEventListener("click", toggleModal);
 
-// toogle bosilganda SignIn va SignUp almashishi
+// Toggle between Sign In and Sign Up
 toggleForm.addEventListener("click", function (e) {
-  e.preventDefault();
-  if (isForgotPassword) return;
+    e.preventDefault();
+    if (isForgotPassword) return;
 
-  isSignUp = !isSignUp;
-
-  submitBtn.textContent = isSignUp ? "Sign Up" : "Sign In";
-  toggleForm.textContent = isSignUp ? "Sign In" : "Sign Up";
-  nameFields.style.display = isSignUp ? "flex" : "none";
+    isSignUp = !isSignUp;
+    submitBtn.textContent = isSignUp ? "Sign Up" : "Sign In";
+    toggleForm.textContent = isSignUp ? "Sign In" : "Sign Up";
+    nameFields.style.display = isSignUp ? "flex" : "none";
 });
 
 // Forgot Password handler
 forgotPasswordLink.addEventListener("click", function (e) {
-  e.preventDefault();
-  isForgotPassword = true;
-  options.style.display = "none";
-
-  //   forgot passworddagi kodni uzgartirgandagi funksionallik
-  formFields.innerHTML = `
-         <div class="input-group">
-             <div class="icon">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                     <polyline points="22,6 12,13 2,6"></polyline>
-                 </svg>
-             </div>
-             <input type="email" class="input" placeholder="Your Email" required>
-         </div>
-
-         <div class="input-group">
-             <div class="icon">
-                 <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                     stroke-linejoin="round">
-                     <path
-                         d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
-                     </path>
-                 </svg>
-             </div>
-             <input type="password" class="input" placeholder="New Password" required>
-         </div>
-
-         <div class="input-group">
-             <div class="icon">
-                 <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                     stroke-linejoin="round">
-                     <path
-                         d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
-                     </path>
-                 </svg>
-             </div>
-             <input type="password" class="input" placeholder="Confirm New Password" required>
-         </div>
-     `;
-
-  submitBtn.textContent = "Reset password";
-
-  // cencel qilish uchun "Escape" bosiladi
-  const cancelBtn = document.createElement("a");
-  cancelBtn.className = "cancel-btn";
-  cancelBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    resetForm();
-  });
+    isForgotPassword = true;
+    options.style.display = "none";
 
-  formFields.appendChild(cancelBtn);
+    formFields.innerHTML = `
+        <div class="input-group">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+            </div>
+            <input type="email" class="input" placeholder="Your Email" required>
+        </div>
+
+        <div class="input-group">
+            <div class="icon">
+                <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                        d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
+                    </path>
+                </svg>
+            </div>
+            <input type="password" class="input" placeholder="New Password" required>
+        </div>
+
+        <div class="input-group">
+            <div class="icon">
+                <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                        d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
+                    </path>
+                </svg>
+            </div>
+            <input type="password" class="input" placeholder="Confirm New Password" required>
+        </div>
+    `;
+
+    submitBtn.textContent = "Reset password";
+
+    // Cancel button
+    const cancelBtn = document.createElement("a");
+    cancelBtn.className = "cancel-btn";
+    cancelBtn.textContent = "Cancel";
+    cancelBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        resetForm();
+    });
+
+    formFields.appendChild(cancelBtn);
 });
 
 // Form submission handler
 authForm.addEventListener("submit", function (e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (isForgotPassword) {
-    const email = this.querySelector('input[type="email"]').value;
-    const newPassword = this.querySelectorAll('input[type="password"]')[0]
-      .value;
-    const confirmPassword = this.querySelectorAll('input[type="password"]')[1]
-      .value;
+    if (isForgotPassword) {
+        handleForgotPassword();
+        return;
+    } else if (isSignUp) {
+        handleSignUp();
+        return;
+    } else {
+        handleSignIn();
+    }
+});
+
+function handleForgotPassword() {
+    const email = authForm.querySelector('input[type="email"]').value;
+    const newPassword = authForm.querySelectorAll('input[type="password"]')[0].value;
+    const confirmPassword = authForm.querySelectorAll('input[type="password"]')[1].value;
 
     const storedEmail = localStorage.getItem("userEmail");
 
     if (email !== storedEmail) {
-      errorMessage.textContent = "Email mavjud emas";
-      errorMessage.style.display = "block";
-      setTimeout(() => {
-        errorMessage.style.display = "none";
-      }, 3000);
-      return;
+        showError("Email mavjud emas");
+        return;
+    }
+
+    if (!validatePassword(newPassword)) {
+        showError("Parol faqat raqamlardan iborat bo'lishi kerak");
+        return;
     }
 
     if (newPassword !== confirmPassword) {
-      errorMessage.textContent = "Parollar mos emas";
-      errorMessage.style.display = "block";
-      setTimeout(() => {
-        errorMessage.style.display = "none";
-      }, 3000);
-      return;
+        showError("Parollar mos emas");
+        return;
     }
 
-    // Update password
     localStorage.setItem("userPassword", newPassword);
-    alert("Password reset successful!");
-    toggleModal();
+    alert("Password yangilandi!");
     resetForm();
-  } else if (isSignUp) {
-    // Sign Up logic
-    const name = nameInput.value;
-    const nickname = nicknameInput.value;
-    const email = emailInput.value;
-    const password = passwordInput.value;
+    isSignUp = false;
+    submitBtn.textContent = "Sign In";
+    toggleForm.textContent = "Sign Up";
+    nameFields.style.display = "none";
+}
+
+function handleSignUp() {
+    const name = document.getElementById("nameInput").value;
+    const nickname = document.getElementById("nicknameInput").value;
+    const email = document.getElementById("emailInput").value;
+    const password = document.getElementById("passwordInput").value;
+
+    if (!validateEmail(email)) {
+        showError("Faqat text va @gmail.com email manzillari qabul qilinadi");
+        return;
+    }
+
+    if (!validatePassword(password)) {
+        showError("Parol faqat raqamlardan iborat bo'lishi kerak");
+        return;
+    }
 
     localStorage.setItem("userName", name);
     localStorage.setItem("userNickname", nickname);
     localStorage.setItem("userEmail", email);
     localStorage.setItem("userPassword", password);
 
-    alert("Registration Successful!");
+    alert("Sizning ma'lumotlaringiz muvaffaqiyatli saqlandi!");
     toggleModal();
-    this.reset();
+    authForm.reset();
 
-    // Update UI
-    isSignUp = true;
+    isSignUp = false;
     submitBtn.textContent = "Sign In";
     toggleForm.textContent = "Sign Up";
     nameFields.style.display = "none";
 
-    // Update profile text with nickname
-    profileText.textContent = nickname || name || email.split("@")[0];
-  } else {
-    // Sign In logic
-    const email = emailInput.value;
-    const password = passwordInput.value;
+    profileText.innerText = nickname || name || email.split("@")[0];
+}
+
+function handleSignIn() {
+    const email = document.getElementById("emailInput").value;
+    const password = document.getElementById("passwordInput").value;
 
     const storedEmail = localStorage.getItem("userEmail");
     const storedPassword = localStorage.getItem("userPassword");
+    const storedNickname = localStorage.getItem("userNickname");
+    const storedName = localStorage.getItem("userName");
 
     if (email === storedEmail && password === storedPassword) {
-      alert("Login successful!");
-      toggleModal();
-      this.reset();
-
-      // Update profile text with stored nickname or name
-      const nickname = localStorage.getItem("userNickname");
-      const name = localStorage.getItem("userName");
-      profileText.textContent = nickname || name || email.split("@")[0];
+        alert("Login successful!");
+        toggleModal();
+        authForm.reset();
+        profileText.innerText = storedNickname || storedName || email.split("@")[0];
     } else {
-      errorMessage.textContent = "Email yoki password xato";
-      errorMessage.style.display = "block";
-      setTimeout(() => {
-        errorMessage.style.display = "none";
-      }, 700);
+        showError("Email yoki password xato");
     }
-  }
-});
+}
+
+function showError(message) {
+    errorMessage.textContent = message;
+    errorMessage.style.display = "block";
+    setTimeout(() => {
+        errorMessage.style.display = "none";
+    }, 3000);
+}
 
 // Close modal when clicking outside
 overlay.addEventListener("click", toggleModal);
 
 // Escape key handler
 document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" && !authModal.classList.contains("hidden")) {
-    if (isForgotPassword) {
-      resetForm();
-    } else {
-      toggleModal();
+    if (e.key === "Escape" && !authModal.classList.contains("hidden")) {
+        if (isForgotPassword) {
+            resetForm();
+        } else {
+            toggleModal();
+        }
     }
-  }
 });
 
-// Check if user is logged in when page loads
+// Initialize on page load
 window.addEventListener("load", function () {
-  if (localStorage.getItem("userEmail")) {
-    const nickname = localStorage.getItem("userNickname");
-    const name = localStorage.getItem("userName");
-    const email = localStorage.getItem("userEmail");
-
-    // Display nickname if available, otherwise name, otherwise email username
-    profileText.textContent = nickname || name || email.split("@")[0];
-  }
+    updateProfileFromStorage();
 });
-
-// Update profile text when nickname changes
-nicknameInput.addEventListener("input", updateProfileText);
 // =========================================================================================== [City modal]
 
 // =========================================================================================== [City data]
