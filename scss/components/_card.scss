@@ -1,42 +1,4 @@
 
-// // overflow-x
-// .market-container {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-//   gap: 16px;
-//   max-width: 1400px;
-//   margin: 0 auto;
-//   margin-top: 40px;
-//   padding: 0 10px;
-// }
-
-// .market-card {
-//   background-color: var(--card-bg);
-//   border-radius: 12px;
-//   overflow: hidden;
-//   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-//   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-//   cursor: pointer;
-//   position: relative;
-//   border: 1px solid var(--border);
-//   margin: 0 auto;
-// }
-
-// /* ✅ RESPONSIVE GORIZONTAL SCROLL */
-// @media (max-width: 600px) {
-//   .market-container {
-//     display: flex;
-//     flex-wrap: nowrap;
-//     overflow-x: auto;
-//     -webkit-overflow-scrolling: touch;
-//     gap: 12px;
-//   }
-
-//   .market-card {
-//     flex: 0 0 240px; /* Har bir card 240px bo‘lsin */
-//     border-radius: 8px;
-//   }
-// }
 .market-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
