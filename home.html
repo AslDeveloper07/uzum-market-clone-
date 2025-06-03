@@ -2,364 +2,369 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>uzum market</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css"
-        integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>uzum market</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css"
+    integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<style>
+<!-- <style>
+  .navbar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    position: relative;
+  }
+
+  @media (max-width: 600px) {
     .navbar {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      align-items: center;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      font-weight: 400;
-      position: relative;
+      margin-bottom: 20px;
+    }
+  }
+
+  .navbar_logo {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+
+  .navbar_logo img {
+    width: 240px;
+  }
+
+  .katalogika {
+    background-color: #a970ff4f;
+    padding: 12px 20px;
+    border-radius: 6px;
+    color: #7000ff;
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .katalogika i {
+    font-size: 22px;
+    color: #781dff;
+  }
+
+  .profile,
+  .likes,
+  .savat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: all ease 0.3s;
+    cursor: pointer;
+  }
+
+  .profile img,
+  .likes img,
+  .savat img {
+    width: 25px;
+  }
+
+  .profile p,
+  .likes p,
+  .savat p {
+    font-size: 18px;
+  }
+
+  .profile:hover,
+  .likes:hover,
+  .savat:hover {
+    background-color: rgba(128, 128, 128, 0.199);
+  }
+
+  .input_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    position: relative;
+  }
+
+  @media (max-width: 600px) {
+    .input_wrapper {
+      height: 45px;
+    }
+  }
+
+  .search-input {
+    width: 510px;
+    height: 100%;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #ffffff;
+    caret-color: #f7f7f8;
+    color: #333;
+    padding: 7px 10px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border: 2px solid rgba(180, 180, 180, 0.267);
+    transition: all 0.2s ease;
+  }
+
+  .search-input:hover {
+    cursor: text;
+    border: 2px solid #6f00ff67;
+  }
+
+  .search-input:focus {
+    background-color: transparent;
+    border: 2px solid #7000ff;
+  }
+
+  .search__btn {
+    border: none;
+    cursor: pointer;
+    background-color: #7000ff;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    height: 100%;
+    width: 79px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 600px) {
+    .search__btn {
+      width: 59px;
+      display: none;
+    }
+  }
+
+  .search__btn:hover {
+    background-color: #5a00d1;
+  }
+
+  .search-modal {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    border: 1px solid transparent;
+    border-top: none;
+  }
+
+  .search-modal.active {
+    max-height: 570px;
+    border-color: #ddd;
+  }
+
+  .search-results {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    overflow-x: auto;
+  }
+
+  .search-item {
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .search-item:hover {
+    background: #f5f5f5;
+  }
+
+  @media (max-width: 600px) {
+    .navbar {
+      justify-content: space-between;
+      padding: 10px;
+      gap: 2px;
     }
 
-    @media (max-width: 600px) {
-      .navbar {
-        margin-bottom: 20px;
-      }
-    }
-
-    .navbar_logo {
-      display: flex;
-      justify-content: center;
-      align-self: center;
-    }
-
-    .navbar_logo img {
-      width: 240px;
-    }
-
-    .katalogika {
-      background-color: #a970ff4f;
-      padding: 12px 20px;
-      border-radius: 6px;
-      color: #7000ff;
-      display: flex;
-      gap: 7px;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .katalogika i {
-      font-size: 22px;
-      color: #781dff;
-    }
-
-    .profile, .likes, .savat {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 15px;
-      border-radius: 6px;
-      transition: all ease 0.3s;
-      cursor: pointer;
-    }
-
-    .profile img, .likes img, .savat img {
-      width: 25px;
-    }
-
-    .profile p, .likes p, .savat p {
-      font-size: 18px;
-    }
-
-    .profile:hover, .likes:hover, .savat:hover {
-      background-color: rgba(128, 128, 128, 0.199);
+    .navbar_logo,
+    .katalogika,
+    .profile,
+    .savat,
+    .likes p {
+      display: none;
     }
 
     .input_wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 48px;
-      position: relative;
-    }
-
-    @media (max-width: 600px) {
-      .input_wrapper {
-        height: 45px;
-      }
+      flex-grow: 1;
+      margin: 0 10px;
     }
 
     .search-input {
-      width: 510px;
-      height: 100%;
-      outline: none;
-      font-size: 14px;
-      font-weight: 500;
-      background-color: #ffffff;
-      caret-color: #f7f7f8;
-      color: #333;
-      padding: 7px 10px;
-      border-top-left-radius: 7px;
-      border-bottom-left-radius: 7px;
-      border: 2px solid rgba(180, 180, 180, 0.267);
-      transition: all 0.2s ease;
+      width: 100%;
     }
 
-    .search-input:hover {
-      cursor: text;
-      border: 2px solid #6f00ff67;
+    .likes {
+      padding: 0;
     }
 
-    .search-input:focus {
-      background-color: transparent;
-      border: 2px solid #7000ff;
-    }
-
-    .search__btn {
-      border: none;
-      cursor: pointer;
-      background-color: #7000ff;
-      border-top-right-radius: 7px;
-      border-bottom-right-radius: 7px;
-      height: 100%;
-      width: 79px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    @media (max-width: 600px) {
-      .search__btn {
-        width: 59px;
-        display: none;
-      }
-    }
-
-    .search__btn:hover {
-      background-color: #5a00d1;
+    .likes img {
+      display: block;
     }
 
     .search-modal {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: white;
-      border-radius: 0 0 8px 8px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      z-index: 100;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      border: 1px solid transparent;
-      border-top: none;
+      left: 10px;
+      right: 10px;
+      width: auto;
     }
-
-    .search-modal.active {
-      max-height: 570px;
-      border-color: #ddd;
-    }
-
-    .search-results {
-      padding: 15px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 15px;
-      overflow-x: auto;
-    }
-
-    .search-item {
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .search-item:hover {
-      background: #f5f5f5;
-    }
-
-    @media (max-width: 600px) {
-      .navbar {
-        justify-content: space-between;
-        padding: 10px;
-        gap: 2px;
-      }
-
-      .navbar_logo,
-      .katalogika,
-      .profile,
-      .savat,
-      .likes p {
-        display: none;
-      }
-
-      .input_wrapper {
-        flex-grow: 1;
-        margin: 0 10px;
-      }
-
-      .search-input {
-        width: 100%;
-      }
-
-      .likes {
-        padding: 0;
-      }
-
-      .likes img {
-        display: block;
-      }
-
-      .search-modal {
-        left: 10px;
-        right: 10px;
-        width: auto;
-      }
-    }
-</style>
+  }
+</style> -->
 
 <body>
-    <!-- Header -->
-    <div class="header ">
-        <div class="header_in container">
-            <div class="dostavka">
-                <div class="location" id="dostavka">
-                    <i class="ri-map-pin-line"></i>
-                    <p id="selectedCity">Toshkent</p>
-                    <i class="ri-arrow-down-s-line"></i>
-                </div>
-                <div class="punkt">
-                    <p>Topshirish punktlari</p>
-                </div>
-            </div>
-            <div class="top_links">
-                <ul>
-                    <li class="sale">
-                        <p>Sotuvchi bo'lim</p>
-                    </li>
-                    <li class="dastovka_punkt">
-                        <p>Topshirish punkitini ochish</p>
-                    </li>
-                    <li>
-                        <p>Savol-javob</p>
-                    </li>
-                    <li>
-                        <p>Buyurtmalarim</p>
-                    </li>
-                    <div class="lang">
-                        <img src="./resource/img/uzb.png" alt="uzbke flag image">
-                        <p>O'zbekcha</p>
-                    </div>
-                </ul>
-            </div>
+  <!-- Header -->
+  <div class="header ">
+    <div class="header_in container">
+      <div class="dostavka">
+        <div class="location" id="dostavka">
+          <i class="ri-map-pin-line"></i>
+          <p id="selectedCity">Toshkent</p>
+          <i class="ri-arrow-down-s-line"></i>
         </div>
+        <div class="punkt">
+          <p>Topshirish punktlari</p>
+        </div>
+      </div>
+      <div class="top_links">
+        <ul>
+          <li class="sale">
+            <p>Sotuvchi bo'lim</p>
+          </li>
+          <li class="dastovka_punkt">
+            <p>Topshirish punkitini ochish</p>
+          </li>
+          <li>
+            <p>Savol-javob</p>
+          </li>
+          <li>
+            <p>Buyurtmalarim</p>
+          </li>
+          <div class="lang">
+            <img src="./resource/img/uzb.png" alt="uzbke flag image">
+            <p>O'zbekcha</p>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- City Selection Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="city-modal">
+
+      <div class="modal-body">
+        <div class="search-input">
+          <input type="text" id="citySearch" placeholder="Shahar nomini yozing...">
+        </div>
+        <div class="city-list" id="cityList">
+          <!-- Shahar nomlari jsda aylanib chiqiladi  -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay and Modal -->
+  <div class="overlay hidden" id="overlay"></div>
+
+  <div class="forma hidden" id="authModal">
+    <div class="logo">
+      <img src="./resource/img/uzummarketlogo.png" alt="Logo">
     </div>
 
-    <!-- City Selection Modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="city-modal">
-
-            <div class="modal-body">
-                <div class="search-input">
-                    <input type="text" id="citySearch" placeholder="Shahar nomini yozing...">
-                </div>
-                <div class="city-list" id="cityList">
-                    <!-- Shahar nomlari jsda aylanib chiqiladi  -->
-                </div>
+    <form class="form" id="authForm">
+      <div id="formFields">
+        <!-- Name and Nickname in one row -->
+        <div class="name-group" id="nameFields">
+          <div class="input-group">
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
             </div>
+            <input type="text" class="input" id="nameInput" placeholder="Name" required>
+          </div>
+
+          <div class="input-group">
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <input type="text" class="input" id="nicknameInput" placeholder="Nickname" required>
+          </div>
         </div>
-    </div>
 
-    <!-- Overlay and Modal -->
-    <div class="overlay hidden" id="overlay"></div>
-
-    <div class="forma hidden" id="authModal">
-        <div class="logo">
-            <img src="./resource/img/uzummarketlogo.png" alt="Logo">
+        <div class="input-group">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+              </path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <input type="email" class="input" id="emailInput" placeholder="Email" required>
         </div>
 
-        <form class="form" id="authForm">
-            <div id="formFields">
-                <!-- Name and Nickname in one row -->
-                <div class="name-group" id="nameFields">
-                    <div class="input-group">
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="12" cy="7" r="4"></circle>
-                            </svg>
-                        </div>
-                        <input type="text" class="input" id="nameInput" placeholder="Name" required>
-                    </div>
+        <div class="input-group">
+          <div class="icon">
+            <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
+              </path>
+            </svg>
+          </div>
+          <input type="password" class="input" id="passwordInput" placeholder="Password" required>
+        </div>
+      </div>
 
-                    <div class="input-group">
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="12" cy="7" r="4"></circle>
-                            </svg>
-                        </div>
-                        <input type="text" class="input" id="nicknameInput" placeholder="Nickname" required>
-                    </div>
-                </div>
+      <div class="error-message" id="errorMessage"></div>
+      <div class="options">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+        <a href="#" id="forgotPasswordLink">Forgot password?</a>
+      </div>
 
-                <div class="input-group">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                            </path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </div>
-                    <input type="email" class="input" id="emailInput" placeholder="Email" required>
-                </div>
+      <button type="submit" class="btn" id="submitBtn">Sign In</button>
 
-                <div class="input-group">
-                    <div class="icon">
-                        <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
-                            </path>
-                        </svg>
-                    </div>
-                    <input type="password" class="input" id="passwordInput" placeholder="Password" required>
-                </div>
-            </div>
+      <div class="signup">
+        Don't have an account? <a href="#" id="toggleForm">Sign up</a>
+      </div>
 
-            <div class="error-message" id="errorMessage"></div>
-            <div class="options">
-                <label>
-                    <input type="checkbox"> Remember me
-                </label>
-                <a href="#" id="forgotPasswordLink">Forgot password?</a>
-            </div>
-
-            <button type="submit" class="btn" id="submitBtn">Sign In</button>
-
-            <div class="signup">
-                Don't have an account? <a href="#" id="toggleForm">Sign up</a>
-            </div>
-
-            <div class="socials">
-                <button type="button" class="social-btn">
-                    <img src="./resource/svg/google (1).svg" alt="Google">
-                </button>
-                <button type="button" class="social-btn">
-                    <img src="./resource/img/market-logo.png" alt="Facebook">
-                </button>
-            </div>
-        </form>
-    </div>
- <!-- Navbar -->
- <div class="navbar container">
+      <div class="socials">
+        <button type="button" class="social-btn">
+          <img src="./resource/svg/google (1).svg" alt="Google">
+        </button>
+        <button type="button" class="social-btn">
+          <img src="./resource/img/market-logo.png" alt="Facebook">
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- Navbar -->
+  <div class="navbar container">
     <div class="navbar_logo">
       <img src="./resource/img/uzummarketlogo.png" alt="logo" />
     </div>
@@ -369,25 +374,19 @@
     </div>
 
     <div class="input_wrapper">
-      <input
-        type="text"
-        name="text"
-        class="search-input"
-        placeholder="Mahsulot va turkumlar izlash"
-        id="searchInput"
-      />
+      <input type="text" name="text" class="search-input" placeholder="Mahsulot va turkumlar izlash" id="searchInput" />
       <button class="search__btn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22">
           <path
             d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z"
-            fill="#efeff1"
-          ></path>
+            fill="#efeff1"></path>
         </svg>
       </button>
 
       <!-- Search modal -->
       <div class="search-modal" id="searchModal">
         <div class="search-results" id="searchResults">
+
         </div>
       </div>
     </div>
@@ -413,256 +412,223 @@
   </div>
 
 
-    <!-- KATALOG -->
-    <div class="katalog container">
-        <div class="katalog_card ">
-            <img src="./resource/img/star-pages.png" alt="star image">
-            <h4 style="font-weight: 500;">
-                Hafta tovarlari
-            </h4>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Elektronika
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Maishiy texnika
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Kiyim
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Poyabzallar
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Aksessuarlar
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Go'zallik va parvarish
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Salomatlik
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Uy-ro'zg'or bo'limlari
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Qurilish va ta'mirlash
-            </p>
-        </div>
-        <div class="katalog_card">
-            <h4>
-                Yana
-                <i class="ri-arrow-down-s-line"></i>
-
-            </h4>
-
-        </div>
+  <!-- KATALOG -->
+  <div class="katalog container">
+    <div class="katalog_card ">
+      <img src="./resource/img/star-pages.png" alt="star image">
+      <h4 style="font-weight: 500;">
+        Hafta tovarlari
+      </h4>
     </div>
-    <!-- SWIP
+    <div class="katalog_card">
+      <p>
+        Elektronika
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Maishiy texnika
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Kiyim
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Poyabzallar
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Aksessuarlar
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Go'zallik va parvarish
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Salomatlik
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Uy-ro'zg'or bo'limlari
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Qurilish va ta'mirlash
+      </p>
+    </div>
+    <div class="katalog_card">
+      <h4>
+        Yana
+        <i class="ri-arrow-down-s-line"></i>
+
+      </h4>
+
+    </div>
+  </div>
+  <!-- SWIP
      PER SLIDER -->
-    <swiper-container class="desktop-slider mySwiper container" pagination="true" pagination-clickable="true"
-        space-between="30" centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
-        <swiper-slide>
-            <img src="./resource/img/uzum.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="./resource/img/slider0.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="./resource/img/ipheonw.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="./resource/img/slider1.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="./resource/img/slider2.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="./resource/img/slider3.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="resource/img/slider4.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="resource/img/slider5.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="./resource/img/cooler.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="./resource/img/bitiruvchi.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="./resource/img//bolalar.jpg" alt="">
-        </swiper-slide>
-        <div class="autoplay-progress" slot="container-end">
-            <svg viewBox="0 0 48 48">
-                <circle cx="24" cy="24" r="20"></circle>
-            </svg>
-            <span></span>
-        </div>
-    </swiper-container>
-
-    <swiper-container class="mobile-slider">
-        <swiper-slide>
-            <img src="	https://images.uzum.uz/d0m17db3uvph509uv7v0/main_page_banner.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="https://images.uzum.uz/d0q02aj3uvph509vs06g/main_page_banner.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="	https://images.uzum.uz/d07mum5pb7f46s88q3f0/main_page_banner.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="./resource/img/slider1-media.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="./resource/img/slider2-media.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="./resource/img/slider3-media.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="resource/img/slider4-media.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="resource/img/slider5-media.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="	https://images.uzum.uz/d0e9n333uvph509t9e4g/main_page_banner.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="	https://images.uzum.uz/d0hctjr3uvph509tt2og/main_page_banner.jpg" alt="">
-        </swiper-slide>
-        <swiper-slide>
-            <img src="	https://images.uzum.uz/d0m0v3j3uvph509uv5g0/main_page_banner.jpg" alt="">
-        </swiper-slide>
-        <!-- Include other slides you want to show on mobile -->
-    </swiper-container>
-
-    <div class="market-container" id="market-container"></div>
-
-    <!-- Footer -->
-    <footer class="footer container">
-        <div class="foot1">
-            <h4>Biz haqimizda</h4>
-            <p>Topshirish punktlari</p>
-            <p>Vakansiyalar</p>
-        </div>
-        <div class="foot2">
-            <h4>
-                Foydalanuvchilarga
-            </h4>
-            <p>Biz bilan bog'lanish</p>
-            <p>Savol-javob</p>
-        </div>
-        <div class="foot3">
-            <h4>
-                Tadbirorlarga
-            </h4>
-            <p>
-                Uzumda soting
-            </p>
-            <p>
-                Sotuvchi kabinetiga kirish
-            </p>
-        </div>
-        <div class="foot4">
-            <h4 style="margin-top: 60px;">
-                Ilovani yuklab olish
-            </h4>
-            <div class="ilova">
-                <div class="app">
-                    <img src="./resource/svg/apple-logo.svg" alt="">
-                    <h4>
-                        AppStore
-                    </h4>
-                </div>
-                <div class="google">
-                    <img src="./resource/svg/playMarket.svg" alt="">
-                    <h4>GooglePlay</h4>
-                </div>
-            </div>
-            <div class="social">
-                <h4>
-                    Uzum ijtimoiy tarmoqlar
-                </h4>
-                <div class="social_icon">
-                    <img src="./resource/svg/instagram.svg" alt="">
-                    <img src="./resource/svg/telegram.svg" alt="">
-                    <img src="./resource/svg/facebook.svg" alt="">
-                    <img src="./resource/svg/youtube.svg" alt="">
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Foot -->
-    <div class="foot container">
-        <div class="maxfiy">
-            <h4>
-                Maxfiy kelishuv
-            </h4>
-            <h4>
-                Foydalanuvchi kelishuvi
-            </h4>
-        </div>
-        <p>
-            «2025© XK MCHJ «UZUM MARKET». STIR 309376127. Barcha huquqlar himoyalangan»
-        </p>
+  <swiper-container class="desktop-slider mySwiper container" pagination="true" pagination-clickable="true"
+    space-between="30" centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
+    <swiper-slide>
+      <img src="./resource/img/uzum.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="./resource/img/slider0.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="./resource/img/ipheonw.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="./resource/img/slider1.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="./resource/img/slider2.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="./resource/img/slider3.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="resource/img/slider4.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="resource/img/slider5.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="./resource/img/cooler.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="./resource/img/bitiruvchi.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="./resource/img//bolalar.jpg" alt="">
+    </swiper-slide>
+    <div class="autoplay-progress" slot="container-end">
+      <svg viewBox="0 0 48 48">
+        <circle cx="24" cy="24" r="20"></circle>
+      </svg>
+      <span></span>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-    <script src="./home.js"></script>
-    <script>
-      const searchInput = document.getElementById('searchInput');
-    const searchModal = document.getElementById('searchModal');
-    const searchResults = document.getElementById('searchResults');
+  </swiper-container>
 
-    // Show modal on focus
-    searchInput.addEventListener('focus', function () {
-      searchModal.classList.add('active');
-    });
+  <swiper-container class="mobile-slider">
+    <swiper-slide>
+      <img src="	https://images.uzum.uz/d0m17db3uvph509uv7v0/main_page_banner.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="https://images.uzum.uz/d0q02aj3uvph509vs06g/main_page_banner.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="	https://images.uzum.uz/d07mum5pb7f46s88q3f0/main_page_banner.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="./resource/img/slider1-media.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="./resource/img/slider2-media.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="./resource/img/slider3-media.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="resource/img/slider4-media.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="resource/img/slider5-media.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="	https://images.uzum.uz/d0e9n333uvph509t9e4g/main_page_banner.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="	https://images.uzum.uz/d0hctjr3uvph509tt2og/main_page_banner.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img src="	https://images.uzum.uz/d0m0v3j3uvph509uv5g0/main_page_banner.jpg" alt="">
+    </swiper-slide>
+    <!-- Include other slides you want to show on mobile -->
+  </swiper-container>
 
-    // Hide modal when clicking outside
-    document.addEventListener('click', function (e) {
-      if (!e.target.closest('.input_wrapper')) {
-        searchModal.classList.remove('active');
-      }
-    });
+  <div class="market-container" id="market-container"></div>
 
-    // Search filter
-    searchInput.addEventListener('input', function () {
-      const searchTerm = this.value.toLowerCase();
-      const items = searchResults.querySelectorAll('.search-item');
-
-      items.forEach(item => {
-        item.style.display = item.textContent.toLowerCase().includes(searchTerm) ? 'block' : 'none';
-      });
-    });
-
-    // Close modal with Escape
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        searchModal.classList.remove('active');
-      }
-    });
-    </script>
+  <!-- Footer -->
+  <footer class="footer container">
+    <div class="foot1">
+      <h4>Biz haqimizda</h4>
+      <p>Topshirish punktlari</p>
+      <p>Vakansiyalar</p>
+    </div>
+    <div class="foot2">
+      <h4>
+        Foydalanuvchilarga
+      </h4>
+      <p>Biz bilan bog'lanish</p>
+      <p>Savol-javob</p>
+    </div>
+    <div class="foot3">
+      <h4>
+        Tadbirorlarga
+      </h4>
+      <p>
+        Uzumda soting
+      </p>
+      <p>
+        Sotuvchi kabinetiga kirish
+      </p>
+    </div>
+    <div class="foot4">
+      <h4 style="margin-top: 60px;">
+        Ilovani yuklab olish
+      </h4>
+      <div class="ilova">
+        <div class="app">
+          <img src="./resource/svg/apple-logo.svg" alt="">
+          <h4>
+            AppStore
+          </h4>
+        </div>
+        <div class="google">
+          <img src="./resource/svg/playMarket.svg" alt="">
+          <h4>GooglePlay</h4>
+        </div>
+      </div>
+      <div class="social">
+        <h4>
+          Uzum ijtimoiy tarmoqlar
+        </h4>
+        <div class="social_icon">
+          <img src="./resource/svg/instagram.svg" alt="">
+          <img src="./resource/svg/telegram.svg" alt="">
+          <img src="./resource/svg/facebook.svg" alt="">
+          <img src="./resource/svg/youtube.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Foot -->
+  <div class="foot container">
+    <div class="maxfiy">
+      <h4>
+        Maxfiy kelishuv
+      </h4>
+      <h4>
+        Foydalanuvchi kelishuvi
+      </h4>
+    </div>
+    <p>
+      «2025© XK MCHJ «UZUM MARKET». STIR 309376127. Barcha huquqlar himoyalangan»
+    </p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+  <script src="./home.js"></script>
+  <script src="./javaScript/searchmodal.js"></script>
 </body>
 
 </html>
