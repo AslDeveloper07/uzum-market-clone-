@@ -350,7 +350,7 @@ class UzumMarket {
               }
               ${
                 product.discount > 0
-                  ? `<span class="discount-badge">-${product.discount}%</span>`
+                  ? `<span class="discount-badges">-${product.discount}%</span>`
                   : ""
               }
           </div>
@@ -622,7 +622,7 @@ forgotPasswordLink.addEventListener("click", function (e) {
     // Cancel button
     const cancelBtn = document.createElement("a");
     cancelBtn.className = "cancel-btn";
-    cancelBtn.textContent = "Cancel";
+    cancelBtn.textContent = "";
     cancelBtn.addEventListener("click", function (e) {
         e.preventDefault();
         resetForm();

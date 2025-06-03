@@ -1,38 +1,4 @@
 
-// const searchInput = document.getElementById('searchInput');
-// const searchModal = document.getElementById('searchModal');
-// const searchResults = document.getElementById('searchResults');
-
-// // Show modal on focus
-// searchInput.addEventListener('focus', function () {
-//     searchModal.classList.add('active');
-// });
-
-// // Hide modal when clicking outside
-// document.addEventListener('click', function (e) {
-//   if (!e.target.closest('.input_wrapper')) {
-//     searchModal.classList.remove('active');
-//   }
-// });
-
-// // Search filter
-// searchInput.addEventListener('input', function () {
-//   const searchTerm = this.value.toLowerCase();
-//   const items = searchResults.querySelectorAll('.search-item');
-
-//   items.forEach(item => {
-//     item.style.display = item.textContent.toLowerCase().includes(searchTerm) ? 'block' : 'none';
-//   });
-// });
-
-// // Close modal with Escape
-// document.addEventListener('keydown', function (e) {
-//   if (e.key === 'Escape') {
-//     searchModal.classList.remove('active');
-//   }
-// });
-
-
 const mahsulotlar = [
   {
     id: 1,
@@ -258,7 +224,7 @@ function generateProductCards(products) {
         <div class="search-card__img">
           <img src="${product.rasmlar[0]}" alt="${product.mahsulotNomi}">
           ${product.chegirma > 0 ? `<span class="discount">-${product.chegirma}%</span>` : ''}
-          <button class="like-btn">
+          <button class="like-buton">
             <i class="ri-heart-line"></i>
           </button>
         </div>
@@ -322,24 +288,20 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// Toggle like button
+
 searchResults.addEventListener('click', function(e) {
-  if (e.target.closest('.like-btn')) {
-    const likeBtn = e.target.closest('.like-buton');
+  const likeBtn = e.target.closest('.like-buton');
+
+  if (likeBtn) {
     const icon = likeBtn.querySelector('i');
 
-    if (icon.classList.contains('ri-heart-line')) {
-      icon.classList.remove('ri-heart-line');
-      icon.classList.add('ri-heart-fill');
-      likeBtn.classList.add('liked');
-    } else {
-      icon.classList.remove('ri-heart-fill');
-      icon.classList.add('ri-heart-line');
-      likeBtn.classList.remove('liked');
+    icon.classList.toggle('ri-heart-line');
+    icon.classList.toggle('ri-heart-fill');
 
-    }
+    likeBtn.classList.toggle('liked');
   }
 });
+
 
 
 
