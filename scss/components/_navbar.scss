@@ -100,8 +100,6 @@
   transition: all 0.2s ease;
 }
 
-
-
 .search__btn {
   border: none;
   cursor: pointer;
@@ -140,7 +138,8 @@
   transition: max-height 0.3s ease;
   border: 1px solid transparent;
   border-top: none;
-  padding: 10px;
+  padding: 0 10px;
+  // display: none;
 }
 .search-modal::-webkit-scrollbar {
   display: none;
@@ -163,7 +162,6 @@
   cursor: pointer;
   transition: background 0.2s;
 }
-
 
 @media (max-width: 600px) {
   .navbar {
@@ -214,8 +212,6 @@
   width: 200px;
   height: 420px;
 }
-
-
 
 .search-card__img {
   position: relative;
@@ -293,11 +289,11 @@
   }
 }
 
-.location{
+.location {
   gap: 1px;
   font-size: 16px;
 }
-.location i{
+.location i {
   margin: 0;
 }
 .search-card__content {
@@ -354,7 +350,7 @@
   font-size: 16px;
   margin-right: 3px;
 }
-#text{
+#text {
   font-size: 16px;
 }
 .search-card__footer {
@@ -366,10 +362,10 @@
   margin-top: 20px;
   margin-bottom: 10px;
 }
-.delivery{
+.delivery {
   font-size: 14px;
 }
-.sold{
+.sold {
   background-color: #4c00ff;
   color: white;
   font-size: 13px;
