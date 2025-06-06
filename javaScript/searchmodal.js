@@ -216,7 +216,6 @@ const searchInput = document.getElementById('searchInput');
 const searchModal = document.getElementById('searchModal');
 const searchResults = document.getElementById('searchResults');
 
-// Generate product cards
 function generateProductCards(products) {
   return products.map(product => `
     <div class="search-item">
@@ -254,22 +253,18 @@ function generateProductCards(products) {
   `).join('');
 }
 
-// Insert product cards into search results
 searchResults.innerHTML = generateProductCards(mahsulotlar);
 
-// Show modal on focus
 searchInput.addEventListener('focus', function() {
   searchModal.classList.add('active');
 });
 
-// Hide modal when clicking outside
 document.addEventListener('click', function(e) {
   if (!e.target.closest('.input_wrapper')) {
     searchModal.classList.remove('active');
   }
 });
 
-// Search filter
 searchInput.addEventListener('input', function() {
   const searchTerm = this.value.toLowerCase();
   const items = searchResults.querySelectorAll('.search-item');
@@ -281,7 +276,6 @@ searchInput.addEventListener('input', function() {
   });
 });
 
-// Close modal with Escape
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     searchModal.classList.remove('active');

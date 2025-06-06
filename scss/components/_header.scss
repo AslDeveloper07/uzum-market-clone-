@@ -46,18 +46,17 @@
   }
 }
 @media (max-width: 600px) {
-  .header{
+  .header {
     padding: 10px;
     display: flex;
     justify-content: space-between;
   }
   .dostavka {
-.location{
-  margin-right: 100px;
-}
+    .location {
+      margin-right: 100px;
+    }
   }
-  .top_links{
+  .top_links {
     display: none;
   }
-
 }
