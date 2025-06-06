@@ -39,7 +39,9 @@ function toggleModal() {
 function resetForm() {
   isForgotPassword = false;
   formFields.innerHTML = `
-        <div class="name-group" id="nameFields" style="display: ${isSignUp ? "flex" : "none"}">
+        <div class="name-group" id="nameFields" style="display: ${
+          isSignUp ? "flex" : "none"
+        }">
             <div class="input-group">
                 <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -94,7 +96,7 @@ function resetForm() {
 
   const nicknameInput = document.getElementById("nicknameInput");
   if (nicknameInput) {
-    nicknameInput.addEventListener("input", function() {
+    nicknameInput.addEventListener("input", function () {
       const nickname = nicknameInput.value;
       profileText.innerText = nickname;
       localStorage.setItem("userNickname", nickname);
@@ -124,7 +126,7 @@ function updateProfileFromStorage() {
 
 profileBtn.addEventListener("click", toggleModal);
 
-toggleForm.addEventListener("click", function(e) {
+toggleForm.addEventListener("click", function (e) {
   e.preventDefault();
   if (isForgotPassword) return;
 
@@ -139,7 +141,7 @@ toggleForm.addEventListener("click", function(e) {
   }
 });
 
-forgotPasswordLink.addEventListener("click", function(e) {
+forgotPasswordLink.addEventListener("click", function (e) {
   e.preventDefault();
   isForgotPassword = true;
   options.style.display = "none";
@@ -188,7 +190,7 @@ forgotPasswordLink.addEventListener("click", function(e) {
   const cancelBtn = document.createElement("a");
   cancelBtn.className = "cancel-btn";
   cancelBtn.textContent = "";
-  cancelBtn.addEventListener("click", function(e) {
+  cancelBtn.addEventListener("click", function (e) {
     e.preventDefault();
     resetForm();
   });
@@ -196,7 +198,7 @@ forgotPasswordLink.addEventListener("click", function(e) {
   formFields.appendChild(cancelBtn);
 });
 
-authForm.addEventListener("submit", function(e) {
+authForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
   if (isForgotPassword) {
@@ -260,6 +262,7 @@ function handleSignUp() {
 
   if (!validatePassword(password)) {
     showError("Parol faqat raqamlardan iborat bo'lishi kerak");
+
     return;
   }
 
@@ -268,7 +271,18 @@ function handleSignUp() {
   localStorage.setItem("userEmail", email);
   localStorage.setItem("userPassword", password);
 
-  alert("Sizning ma'lumotlaringiz muvaffaqiyatli saqlandi!");
+  Swal.fire({
+    toast: true,
+    position: "top-end",
+    icon: "success",
+    title: `Successfull!!`,
+    text: `Sizning ma'lumotlaringiz muvaffaqiyatli saqlandi!!`,
+    showConfirmButton: false,
+    timer: 3000,
+    background: "#6F00FF",
+    color: "#fff",
+  });
+
   toggleModal();
   authForm.reset();
 
@@ -294,7 +308,17 @@ function handleSignIn() {
   const storedName = localStorage.getItem("userName");
 
   if (email === storedEmail && password === storedPassword) {
-    alert("Sizning ma'lumotlaringiz to'g'ri!");
+    Swal.fire({
+      toast: true,
+      position: "top-end",
+      icon: "success",
+      title: `Successfull!!`,
+      title: `Ma'lumotlar muvaffaqiyatli deb tasdiqlandi!`,
+      showConfirmButton: false,
+      timer: 3000,
+      background: "#6F00FF",
+      color: "#fff",
+    });
     toggleModal();
     authForm.reset();
     profileText.innerText = storedNickname || storedName || email.split("@")[0];
@@ -313,7 +337,7 @@ function showError(message) {
 
 overlay.addEventListener("click", toggleModal);
 
-document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown", function (e) {
   if (e.key === "Escape" && !authModal.classList.contains("hidden")) {
     if (isForgotPassword) {
       resetForm();
@@ -323,6 +347,6 @@ document.addEventListener("keydown", function(e) {
   }
 });
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
   updateProfileFromStorage();
 });

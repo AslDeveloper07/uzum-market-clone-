@@ -432,3 +432,14 @@ class UzumMarket {
 document.addEventListener("DOMContentLoaded", () => {
   new UzumMarket();
 });
+
+
+
+
+
+
+
+
+
+
+
