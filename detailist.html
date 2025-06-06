@@ -10,155 +10,265 @@
         integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        body {
+        /* body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             margin: 0;
             padding: 0;
             color: var(--text);
             height: 100vh;
             overflow: auto;
-            /* background-color: var(--danger); */
 
-        }
+        } */
     </style>
 </head>
 
 <body>
-    <!-- HEADER -->
-    <div class="header">
-        <div class="header_in container">
-          <div class="dostavka" id="dostavka">
-            <div class="location">
-              <i class="ri-map-pin-line"></i>
-              <p id="selectedCity">Toshkent</p>
-              <i class="ri-arrow-down-s-line"></i>
-            </div>
-            <div class="punkt">
-              <p>Topshirish punktlari</p>
-            </div>
+ <!-- Header -->
+ <div class="header ">
+    <div class="header_in container">
+      <div class="dostavka">
+        <div class="location" id="dostavka">
+          <i class="ri-map-pin-line"></i>
+          <p id="selectedCity">Toshkent</p>
+          <i class="ri-arrow-down-s-line"></i>
+        </div>
+        <div class="punkt">
+          <p>Topshirish punktlari</p>
+        </div>
+      </div>
+      <div class="top_links">
+        <ul>
+          <li class="sale">
+            <p>Sotuvchi bo'lim</p>
+          </li>
+          <li class="dastovka_punkt">
+            <p>Topshirish punkitini ochish</p>
+          </li>
+          <li>
+            <p>Savol-javob</p>
+          </li>
+          <li>
+            <p>Buyurtmalarim</p>
+          </li>
+          <div class="lang">
+            <img src="./resource/img/uzb.png" alt="uzbke flag image">
+            <p>O'zbekcha</p>
           </div>
-          <div class="top_links">
-            <ul>
-              <li class="sale">
-                <p>Sotuvchi bo'lim</p>
-              </li>
-              <li class="dastovka_punkt">
-                <p>Topshirish punkitini ochish</p>
-              </li>
-              <li>
-                <p>Savol-javob</p>
-              </li>
-              <li>
-                <p>Buyurtmalarim</p>
-              </li>
-              <div class="lang">
-                <img src="./resource/img/uzb.png" alt="uzbke flag image">
-                <p>O'zbekcha</p>
-              </div>
-            </ul>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- City Selection Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="city-modal">
+
+      <div class="modal-body">
+        <div class="search-input">
+          <input type="text" id="citySearch" placeholder="Shahar nomini yozing...">
+        </div>
+        <div class="city-list" id="cityList">
+          <!-- Shahar nomlari jsda aylanib chiqiladi  -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay and Modal -->
+  <div class="overlay hidden" id="overlay"></div>
+
+  <div class="forma hidden" id="authModal">
+    <div class="logo">
+      <img src="./resource/img/uzummarketlogo.png" alt="Logo">
+    </div>
+
+    <form class="form" id="authForm">
+      <div id="formFields">
+        <!-- Name and Nickname in one row -->
+        <div class="name-group" id="nameFields">
+          <div class="input-group">
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <input type="text" class="input" id="nameInput" placeholder="Name" required>
           </div>
+
+          <div class="input-group">
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <input type="text" class="input" id="nicknameInput" placeholder="Nickname" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+              </path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <input type="email" class="input" id="emailInput" placeholder="Email" required>
+        </div>
+
+        <div class="input-group">
+          <div class="icon">
+            <svg class="key-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
+              </path>
+            </svg>
+          </div>
+          <input type="password" class="input" id="passwordInput" placeholder="Password" required>
         </div>
       </div>
 
-     
-    <div class="navbar container">
-        <div class="navbar_logo">
-            <img src="./resource/img/uzummarketlogo.png" alt="logo">
-        </div>
-        <div class="katalogika">
-            <i class="ri-archive-stack-fill"></i>
-            Katalog
-        </div>
-        <div class="input_wrapper">
-            <input type="text" name="text" class="input" placeholder="Mahsulot va turkumlar izlash ">
-            <button class="search__btn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22">
-                    <path
-                        d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z"
-                        fill="#efeff1"></path>
-                </svg>
-            </button>
-        </div>
-        <div class="profile">
-            <img src="./resource/svg/user.svg" alt="">
-            <p>Kirish</p>
-        </div>
-        <div class="likes">
-            <img src="./resource/svg/heart-svg.svg" alt="">
-            <p>
-                Saralanganlar
-            </p>
-        </div>
-        <div class="savat">
-            <img src="./resource/svg/savat.svg" alt="">
-            <p>
-                Savat
-            </p>
-        </div>
-    </div>
-    <!-- KATALOG -->
-    <div class="katalog container">
-        <div class="katalog_card ">
-            <img src="./resource/img/star-pages.png" alt="star image">
-            <p>
-                Hafta tovarlari
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Elektronika
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Maishiy texnika
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Kiyim
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Poyabzallar
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Aksessuarlar
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Go'zallik va parvarish
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Salomatlik
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Uy-ro'zg'or bo'limlari
-            </p>
-        </div>
-        <div class="katalog_card">
-            <p>
-                Qurilish va ta'mirlash
-            </p>
-        </div>
-        <div class="katalog_card">
-            <h4>
-                Yana
-                <i class="ri-arrow-down-s-line"></i>
+      <div class="error-message" id="errorMessage"></div>
+      <div class="options">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+        <a href="#" id="forgotPasswordLink">Forgot password?</a>
+      </div>
 
-            </h4>
+      <button type="submit" class="btn" id="submitBtn">Sign In</button>
 
-        </div>
+      <div class="signup">
+        Don't have an account? <a href="#" id="toggleForm">Sign up</a>
+      </div>
+
+      <div class="socials">
+        <button type="button" class="social-btn">
+          <img src="./resource/svg/google (1).svg" alt="Google">
+        </button>
+        <button type="button" class="social-btn">
+          <img src="./resource/img/market-logo.png" alt="Facebook">
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- Navbar -->
+  <div class="navbar container">
+    <div class="navbar_logo">
+      <img src="./resource/img/uzummarketlogo.png" alt="logo" />
     </div>
 
+    <div class="katalogika">
+      <i class="ri-archive-stack-fill"></i> Katalog
+    </div>
+
+    <div class="input_wrapper">
+      <input type="text" name="text" class="search-input" placeholder="Mahsulot va turkumlar izlash" id="searchInput" />
+      <button class="search__btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22">
+          <path
+            d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z"
+            fill="#efeff1"></path>
+        </svg>
+      </button>
+
+      <!-- Search modal -->
+      <div class="search-modal" id="searchModal">
+        <div class="search-results" id="searchResults">
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Button -->
+    <div class="profile" id="profileBtn">
+      <img src="./resource/svg/user.svg" alt="User" />
+      <p id="profileText">Kirish</p>
+    </div>
+
+    <div class="likes" id="likesBtn">
+      <div class="likes-icon-wrapper">
+        <img src="./resource/svg/heart-svg.svg" alt="" />
+        <span class="likes-count hidden" id="likesCounter">0</span>
+      </div>
+      <p>Saralanganlar</p>
+    </div>
+
+    <div class="savat" id="savatBtn">
+      <img src="./resource/svg/savat.svg" alt="" />
+      <p>Savat</p>
+    </div>
+  </div>
+
+
+  <!-- KATALOG -->
+  <div class="katalog container">
+    <div class="katalog_card ">
+      <img src="./resource/img/star-pages.png" alt="star image">
+      <h4 style="font-weight: 500;">
+        Hafta tovarlari
+      </h4>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Elektronika
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Maishiy texnika
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Kiyim
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Poyabzallar
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Aksessuarlar
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Go'zallik va parvarish
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Salomatlik
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Uy-ro'zg'or bo'limlari
+      </p>
+    </div>
+    <div class="katalog_card">
+      <p>
+        Qurilish va ta'mirlash
+      </p>
+    </div>
+    <div class="katalog_card">
+      <h4>
+        Yana
+        <i class="ri-arrow-down-s-line"></i>
+
+      </h4>
+
+    </div>
+  </div>
     <div class="product container">
         <div class="modal-header">
             <div class="modal-images">
@@ -194,6 +304,8 @@
     </div>
 
     <script src="/detalist.js"></script>
+    <script src="./javaScript/searchmodal.js"></script>
+    <script src="./home.js"></script>
 </body>
 
 </html>

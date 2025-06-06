@@ -46,6 +46,10 @@ class UzumMarket {
     this.saveToStorage("cacheTimestamp", Date.now());
 
     return products;
+
+
+
+
   }
   //=============================================================================================>[Gigant data]
   getFallbackData() {
@@ -273,10 +277,12 @@ class UzumMarket {
     ];
   }
 
+
   getFromStorage(key) {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : null;
   }
+
 
   saveToStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
