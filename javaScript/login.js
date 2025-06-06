@@ -39,7 +39,7 @@ function toggleModal() {
 function resetForm() {
   isForgotPassword = false;
   formFields.innerHTML = `
-        <div class="name-group" id="nameFields">
+        <div class="name-group" id="nameFields" style="display: ${isSignUp ? "flex" : "none"}">
             <div class="input-group">
                 <div class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -94,7 +94,7 @@ function resetForm() {
 
   const nicknameInput = document.getElementById("nicknameInput");
   if (nicknameInput) {
-    nicknameInput.addEventListener("input", function () {
+    nicknameInput.addEventListener("input", function() {
       const nickname = nicknameInput.value;
       profileText.innerText = nickname;
       localStorage.setItem("userNickname", nickname);
@@ -102,7 +102,6 @@ function resetForm() {
   }
 
   submitBtn.textContent = isSignUp ? "Sign Up" : "Sign In";
-  nameFields.style.display = isSignUp ? "flex" : "none";
   errorMessage.style.display = "none";
   options.style.display = "flex";
 
@@ -125,17 +124,22 @@ function updateProfileFromStorage() {
 
 profileBtn.addEventListener("click", toggleModal);
 
-toggleForm.addEventListener("click", function (e) {
+toggleForm.addEventListener("click", function(e) {
   e.preventDefault();
   if (isForgotPassword) return;
 
   isSignUp = !isSignUp;
   submitBtn.textContent = isSignUp ? "Sign Up" : "Sign In";
   toggleForm.textContent = isSignUp ? "Sign In" : "Sign Up";
-  nameFields.style.display = isSignUp ? "flex" : "none";
+
+  // NameFields ni yangilash
+  const nameFields = document.getElementById("nameFields");
+  if (nameFields) {
+    nameFields.style.display = isSignUp ? "flex" : "none";
+  }
 });
 
-forgotPasswordLink.addEventListener("click", function (e) {
+forgotPasswordLink.addEventListener("click", function(e) {
   e.preventDefault();
   isForgotPassword = true;
   options.style.display = "none";
@@ -184,7 +188,7 @@ forgotPasswordLink.addEventListener("click", function (e) {
   const cancelBtn = document.createElement("a");
   cancelBtn.className = "cancel-btn";
   cancelBtn.textContent = "";
-  cancelBtn.addEventListener("click", function (e) {
+  cancelBtn.addEventListener("click", function(e) {
     e.preventDefault();
     resetForm();
   });
@@ -192,7 +196,7 @@ forgotPasswordLink.addEventListener("click", function (e) {
   formFields.appendChild(cancelBtn);
 });
 
-authForm.addEventListener("submit", function (e) {
+authForm.addEventListener("submit", function(e) {
   e.preventDefault();
 
   if (isForgotPassword) {
@@ -236,7 +240,11 @@ function handleForgotPassword() {
   isSignUp = false;
   submitBtn.textContent = "Sign In";
   toggleForm.textContent = "Sign Up";
-  nameFields.style.display = "none";
+
+  const nameFields = document.getElementById("nameFields");
+  if (nameFields) {
+    nameFields.style.display = "none";
+  }
 }
 
 function handleSignUp() {
@@ -267,7 +275,11 @@ function handleSignUp() {
   isSignUp = false;
   submitBtn.textContent = "Sign In";
   toggleForm.textContent = "Sign Up";
-  nameFields.style.display = "none";
+
+  const nameFields = document.getElementById("nameFields");
+  if (nameFields) {
+    nameFields.style.display = "none";
+  }
 
   profileText.innerText = nickname || name || email.split("@")[0];
 }
@@ -282,7 +294,7 @@ function handleSignIn() {
   const storedName = localStorage.getItem("userName");
 
   if (email === storedEmail && password === storedPassword) {
-    alert("Login successful!");
+    alert("Sizning ma'lumotlaringiz to'g'ri!");
     toggleModal();
     authForm.reset();
     profileText.innerText = storedNickname || storedName || email.split("@")[0];
@@ -301,7 +313,7 @@ function showError(message) {
 
 overlay.addEventListener("click", toggleModal);
 
-document.addEventListener("keydown", function (e) {
+document.addEventListener("keydown", function(e) {
   if (e.key === "Escape" && !authModal.classList.contains("hidden")) {
     if (isForgotPassword) {
       resetForm();
@@ -311,6 +323,6 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-window.addEventListener("load", function () {
+window.addEventListener("load", function() {
   updateProfileFromStorage();
 });

@@ -14,9 +14,9 @@ class UzumMarket {
   async init() {
     this.products = await this.loadProducts();
 
-    while (this.products.length < 20) {
+    while (this.products.length < 30) {
       this.products = this.products.concat(
-        this.products.slice(0, 20 - this.products.length)
+        this.products.slice(0, 30 - this.products.length)
       );
     }
 
@@ -317,7 +317,7 @@ class UzumMarket {
     container.innerHTML = "";
 
     // Display first 20 products
-    this.products.slice(0, 20).forEach((product) => {
+    this.products.slice(0,50).forEach((product) => {
       const isLiked = this.getLikedProducts().includes(product.id);
       const discountedPrice = product.price * (1 - product.discount / 100);
 

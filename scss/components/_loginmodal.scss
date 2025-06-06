@@ -153,7 +153,12 @@
     padding: 8px;
     transition: 0.3s;
 }
-
+#remember{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
 .social-btn:hover {
     border-color: #3b82f6;
     background-color: #e5e7eb;
